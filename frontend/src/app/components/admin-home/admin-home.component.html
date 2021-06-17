@@ -1,0 +1,16 @@
+<main class="container ">
+    <section class="panel-margin">
+        <div class="d-flex justify-content-center ">
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle class="reportes-btn" value="bold" (click)="irReporteUsuarios()">REPORTE DE USUARIOS
+                </mat-button-toggle>
+                <mat-button-toggle class="reportes-btn" value="italic" (click)="irReporteSolicitudes()">REPORTE DE
+                    SOLICITUDES
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </section>
+    <section class="container">
+        <router-outlet></router-outlet>
+    </section>
+</main>

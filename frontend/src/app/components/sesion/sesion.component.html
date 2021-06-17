@@ -1,0 +1,31 @@
+<main class="container">
+    <div class="contenido-centrado">
+        <h1 style="color:#204051">SECCIÓN RECLAMOS</h1>
+    </div>
+    <section>
+        <div class="panel-bg contenido-centrado text-center">
+            <h2 id="text-white">INICIAR SESIÓN</h2>
+            <form [formGroup]="formLogin" (submit)="send()" class="panel-margin">
+                <div><input type="email" id="email" formControlName="email" placeholder="EMAIL"
+                        class="text-center input-sesion"></div>
+                <div><input type="password" id="password" formControlName="password" placeholder="CONTRASEÑA"
+                        class="text-center input-sesion"></div>
+                <div>
+                    <mat-checkbox type="checkbox" id=" "  >RECORDAR</mat-checkbox>
+                </div>
+                <div class="text-center">
+                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
+                </div>
+        
+                <div>
+                    <button [disabled]="formLogin.invalid" mat-raised-button class="btn" type="submit">ENVIAR</button>
+                </div>
+            </form>
+        </div>
+        <div class="contenido-centrado">
+            <a href="" style="color: black;" [routerLink]="['registro']" routerLinkActive="router-link-active" >REGISTRARSE</a>
+        </div>
+    </section>
+     
+ 
+</main> 

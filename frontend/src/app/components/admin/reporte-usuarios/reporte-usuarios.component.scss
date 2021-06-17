@@ -1,0 +1,23 @@
+$main-color-dark:#204051;
+$main-color:#3B6978;
+$main-color-light:#84A9AC;
+
+$prioridad-baja:#3FD233;
+$prioridad-alta:#E82E2E;
+$prioridad-media:#F0D856;
+
+.table-header {
+  background-color: $main-color;
+}
+
+th {
+  color: white;
+}
+
+.table-body {
+  background-color: white;
+}
+.table>:not(caption)>*>*{
+  box-shadow: none;
+  border-bottom-width: 3px;
+}

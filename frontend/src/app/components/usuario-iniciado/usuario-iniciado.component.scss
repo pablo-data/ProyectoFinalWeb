@@ -1,0 +1,18 @@
+$main-color-dark:#204051;
+$main-color:#3B6978;
+$main-color-light:#84A9AC;
+.contenido{
+    width: 50%;
+    margin: auto;
+}
+.panel-reclamo div{
+    width: fit-content;
+}
+.container div{
+    margin: auto;
+}
+@media(max-width:768px){
+    .contenido {
+        width: 100%;
+    }
+}
