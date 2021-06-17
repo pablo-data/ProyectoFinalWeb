@@ -21,7 +21,7 @@ async function postAdmin(admin: Admin): Promise<any[]>{
         admin.contraseña = md5(admin.contraseña);
         return repository.postAdmin(admin);
     }else{
-        return Promise.reject('La cuenta de administrado ya existe');
+        return Promise.reject('La cuenta de administrador ya existe');
     }
 
     
