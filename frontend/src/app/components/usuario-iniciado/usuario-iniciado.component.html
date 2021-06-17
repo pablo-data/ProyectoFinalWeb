@@ -1,0 +1,50 @@
+<main class="container">
+    <section>
+        <div class="contenido">
+            <h2>INTRODUZCA LOS SIGUIENTES DATOS:</h2>
+        </div>
+        <form [formGroup]="formReclamo" (submit)="reclamar()">
+            <div class="panel-bg panel-reclamo contenido">
+                <div>
+                    <label for="" class="d-block">PRIORIDAD</label>
+                    <mat-form-field appearance="outline">
+                        <mat-label>SELECCIONE PRIORIDAD</mat-label>
+                        <mat-select formControlName="prioridad">
+                            <mat-option *ngFor="let item of prioridades" [value]="item" id="prioridad"
+                                 >
+                                {{item}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <label for="" class="d-block">CATEGORIA</label>
+                    <mat-form-field appearance="outline">
+                        <mat-label>SELECCIONE CATEGORIA</mat-label>
+                        <mat-select formControlName="categoria">
+                            <mat-option *ngFor="let item of categorias" [value]="item" id="categoria">
+                                {{item}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <label for="" class="d-block">ASUNTO</label>
+                    <mat-form-field appearance="outline">
+                        <input matInput class="text-left" type="text" id="asunto" formControlName="asunto">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <label for="" class="d-block">DESCRIPCION</label>
+                    <mat-form-field appearance="outline">
+                        <textarea formControlName="descripcion" matInput></textarea>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button [disabled]="formReclamo.invalid" type="submit" mat-raised-button class="btn">ENVIAR</button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+</main>

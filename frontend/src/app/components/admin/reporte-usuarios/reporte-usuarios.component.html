@@ -1,0 +1,46 @@
+<div class="panel-margin">
+    <div class="text-center">
+        <mat-form-field>
+            <input (keyup)="filtroRut($event)" (keyup)="comuna.value=region.value=''" matInput
+                placeholder="Filtrar por rut" type="text" #rut required id="">
+        </mat-form-field>
+        <mat-form-field>
+            <input (keyup)="filtroRegion($event)" (keyup)="comuna.value=rut.value=''" matInput
+                placeholder="Filtrar por region" type="text" #region required id="">
+        </mat-form-field>
+        <mat-form-field>
+            <input (keyup)="filtroComuna($event)" (keyup)="region.value=rut.value=''" matInput
+                placeholder="Filtrar por comuna" type="text" #comuna required id="">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="filtrar()">FILTRAR</button>
+        <button mat-raised-button color="warn" (click)="reiniciar()">REINICIAR</button>
+    </div>
+    <div class="table-responsive">
+
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">NOMBRES</th>
+                <th scope="col">APELLIDOS</th>
+                <th scope="col">RUT</th>
+                <th scope="col">REGION</th>
+                <th scope="col">COMUNA</th>
+                <th scope="col">EMAIL</th>
+            </tr>
+        </thead>
+        <tbody class="table-body">
+            <tr class="table-active" *ngFor="let item of usuarios">
+                <th scope="row" style="color: black;">0</th>
+                <td>{{item.nombres}}</td>
+                <td>{{item.apellidos}}</td>
+                <td>{{item.rut}}</td>
+                <td>{{item.region}}</td>
+                <td>{{item.comuna}}</td>
+                <td>{{item.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+</div>

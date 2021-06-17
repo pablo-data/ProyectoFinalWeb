@@ -1,0 +1,25 @@
+$main-color-dark:#204051;
+$main-color:#3B6978;
+$main-color-light:#84A9AC;
+
+.contenido-centrado {
+  width: 350px;
+  margin: auto;
+}
+
+@media(max-width:768px) {
+  .contenido-centrado {
+    width: 100%;
+  }
+}
+
+.input-sesion {
+  background-color: $main-color;
+  border: 0;
+  border-radius: 10px;
+  width: 55%;
+}
+
+element.style {
+  width: 0;
+}
