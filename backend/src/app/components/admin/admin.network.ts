@@ -40,7 +40,7 @@ router.post('/', async (req: Request, res: Response) => {
     }
     catch(error){
         console.log(error);
-        respuesta.error(req, res, 'información invalida, el correo ya esta en uso', 500);
+        respuesta.error(req, res, 'información invalida', 500);
     }
 });
 

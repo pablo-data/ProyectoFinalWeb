@@ -31,7 +31,7 @@ async function postUser(user: User): Promise<any[]>{
         user.contraseña = md5(user.contraseña);
         return repository.postUser(user);
     }else{
-        return Promise.reject();
+        return Promise.reject('El usuario ya existe');
     }
 }
 

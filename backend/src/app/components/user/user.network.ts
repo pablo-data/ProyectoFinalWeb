@@ -40,7 +40,7 @@ router.post('/', async (req: Request, res: Response) => {
     }
     catch(error){
         console.log(error);
-        respuesta.error(req, res, 'información invalida, el usuario ya existe', 500);
+        respuesta.error(req, res, 'información invalida', 500);
     }
 });
 

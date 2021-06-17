@@ -39,7 +39,7 @@ function postUser(user) {
             return user_repository_1.default.postUser(user);
         }
         else {
-            return Promise.reject();
+            return Promise.reject('El usuario ya existe');
         }
     });
 }

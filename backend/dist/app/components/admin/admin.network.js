@@ -45,7 +45,7 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     catch (error) {
         console.log(error);
-        respuesta_module_1.default.error(req, res, 'información invalida, el correo ya esta en uso', 500);
+        respuesta_module_1.default.error(req, res, 'información invalida', 500);
     }
 }));
 router.patch('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
