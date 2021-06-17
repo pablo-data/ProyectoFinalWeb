@@ -32,7 +32,7 @@ function postAdmin(admin) {
             return admin_repository_1.default.postAdmin(admin);
         }
         else {
-            return Promise.reject('La cuenta de administrado ya existe');
+            return Promise.reject('La cuenta de administrador ya existe');
         }
     });
 }
