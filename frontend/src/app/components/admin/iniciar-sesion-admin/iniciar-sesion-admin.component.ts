@@ -1,8 +1,8 @@
-import { miAdmin } from './../../../interfaces/admin';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HeaderLoginService } from 'src/app/servicios/header-login.service';
+import { LoginService } from 'src/app/servicios/login.service';
 
 @Component({
   selector: 'app-iniciar-sesion-admin',
@@ -17,7 +17,8 @@ export class IniciarSesionAdminComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public router: Router,
-    private headerLog: HeaderLoginService
+    private headerLog: HeaderLoginService,
+    private login: LoginService,
   ) {
     this.siteKey = '6LdZ8CgbAAAAACt5zy_JxiKcrrDJKjSeKfw-9Wf6';
   }
@@ -29,16 +30,25 @@ export class IniciarSesionAdminComponent implements OnInit {
       recaptcha: ['', Validators.required],
     });
   }
-  send(): any {
-    this.loguearse();
-    //aca deberia comunicarse con la bd y esperar la respuesta,
-    //luego si el inicio de sesion es valido cambiar la vista
-  }
-  loguearse() {
-    //test
-    this.data = miAdmin;
-    this.headerLog.headerTrigger.emit(this.data);
-    this.router.navigate(['/adminHome']);
+  send() {
+    this.login.token().subscribe((token) => {
+      this.login
+        .validarLoginAdmin(
+          this.formLogin.get('email').value,
+          this.formLogin.get('password').value,
+          token.message
+        )
+        .subscribe((data) => {
+          if (data.message == '') {
+            //mensaje de error
+            console.log('Login no existe');
+          } else {
+            this.data = data;
+            this.headerLog.headerTrigger.emit(this.data);
+            this.router.navigate(['/adminHome']);
+          }
+        });
+    });
   }
   /**
    * Comprueba que el formulario este completo
