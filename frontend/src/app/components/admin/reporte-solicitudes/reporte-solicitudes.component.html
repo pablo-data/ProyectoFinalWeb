@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-evenly">
         <div class="flex-column">
             <div *ngFor="let item of tickets">
-                <div *ngIf="item.prioridad_idPrioridad==5" class="prioridad-alta box d-flex">
+                <div *ngIf="item.prioridad_idPrioridad==5" class="prioridad-alta box d-flex justify-content-between">
                     <div>
                         {{item.asunto}}
                         <br><br>
@@ -22,7 +22,7 @@
         </div>
         <div class="flex-column">
             <div *ngFor="let item of tickets">
-                <div *ngIf="item.prioridad_idPrioridad==4" class="prioridad-media box d-flex">
+                <div *ngIf="item.prioridad_idPrioridad==4" class="prioridad-media box d-flex justify-content-between">
                     <div>
                         {{item.asunto}}
                         <br><br>
@@ -42,7 +42,7 @@
         </div>
         <div class="flex-column">
             <div *ngFor="let item of tickets">
-                <div *ngIf="item.prioridad_idPrioridad==6" class="prioridad-baja box d-flex">
+                <div *ngIf="item.prioridad_idPrioridad==6" class="prioridad-baja box d-flex justify-content-between">
                     <div>
                         {{item.asunto}}
                         <br><br>
