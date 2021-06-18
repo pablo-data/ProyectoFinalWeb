@@ -1,12 +1,10 @@
 export interface Ticket{
-  prioridad:string;
-  estado:string;
-  numero:number;
+  prioridad_idPrioridad:number;
   asunto:string;
   descripcion:string;
+  categoria:string;
+  usuario_idUsuario:number;
 }
-//Todos los usuarios de la base de datos con los que el 
-//administrador puede interactuar en la web.
 export interface Usuario {
   nombres: string;
   apellidos: string;
@@ -15,25 +13,5 @@ export interface Usuario {
   region: string;
   comuna: string;
   email: string;
-  tickets:Array<Ticket>;
+  contraseña:string;
 }
-export var ticketUsuarios: Ticket[] = [
-   
-];
-export var miUsuario: Usuario = {
-  nombres: '',
-  apellidos: '',
-  rut: '',
-  direccion: '',
-  region: '',
-  comuna: '',
-  email: '',
-  tickets: ticketUsuarios,
-};
-/*Tabla de usuarios la cual puede ver el administrador.
-
-  test
-*/
-export var tablaUsuarios: Usuario[] = [
-   
-];
