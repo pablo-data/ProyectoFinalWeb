@@ -4,8 +4,14 @@
 
 export const environment = {
   production: false,
-  apiLogin: 'http://localhost:3800/api',
+  apiLoginUser: 'http://localhost:3800/api',
   apiToken: 'http://localhost:3800/api/login/token',
+  apiLoginAdmin: 'http://localhost:3800/api/login/admin',
+  apiGetUsers: 'http://localhost:3800/api/user/all',
+  apiTickets: 'http://localhost:3800/api/ticket/all',
+  apiPostUser: 'http://localhost:3800/api/user/',
+  apiPostForm: 'http://localhost:3800/api/form/',
+  apiGetForms: 'http://localhost:3800/api/form/all',
 };
 
 /*
