@@ -10,8 +10,7 @@
                     <mat-form-field appearance="outline">
                         <mat-label>SELECCIONE PRIORIDAD</mat-label>
                         <mat-select formControlName="prioridad">
-                            <mat-option *ngFor="let item of prioridades" [value]="item" id="prioridad"
-                                 >
+                            <mat-option *ngFor="let item of prioridades" [value]="item" id="prioridad">
                                 {{item}}
                             </mat-option>
                         </mat-select>
@@ -41,10 +40,12 @@
                     </mat-form-field>
                 </div>
                 <div>
+                    <p>{{mensaje}}</p>
+                </div>
+                <div>
                     <button [disabled]="formReclamo.invalid" type="submit" mat-raised-button class="btn">ENVIAR</button>
                 </div>
             </div>
         </form>
     </section>
-
 </main>
