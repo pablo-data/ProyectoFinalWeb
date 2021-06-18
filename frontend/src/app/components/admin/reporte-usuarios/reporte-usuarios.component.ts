@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { tablaUsuarios, Usuario } from 'src/app/interfaces/Usuario';
+import { Usuario } from 'src/app/interfaces/Usuario';
+import { UsuariosRegistradosService } from 'src/app/servicios/usuarios-registrados.service';
 
 @Component({
   selector: 'app-reporte-usuarios',
@@ -11,10 +12,12 @@ export class ReporteUsuariosComponent implements OnInit {
   private fComuna: string = '';
   private fRegion: string = '';
   public contadorTabla: number = 1;
-  public usuarios: Usuario[] = tablaUsuarios;
-  constructor() {}
-
-  ngOnInit(): void {}
+  public usuarios: Usuario[] = [];
+  constructor(private usuariosReg: UsuariosRegistradosService) {}
+  ngOnInit(): void {
+    this.usuarios = this.usuariosReg.usuariosRegistrados;
+    console.log(this.usuarios);
+  }
   //#region Metodos de filtro
   /**
    * Asigna al string fRut el input de filtro por comuna
@@ -54,19 +57,19 @@ export class ReporteUsuariosComponent implements OnInit {
   filtrar() {
     this.usuarios = [];
     if (this.fRut != '') {
-      tablaUsuarios.forEach((x) => {
+      this.usuariosReg.usuariosRegistrados.forEach((x) => {
         if (x.rut.includes(this.fRut)) {
           this.usuarios.push(x);
         }
       });
     } else if (this.fComuna != '') {
-      tablaUsuarios.forEach((x) => {
+      this.usuariosReg.usuariosRegistrados.forEach((x) => {
         if (x.comuna.includes(this.fComuna)) {
           this.usuarios.push(x);
         }
       });
     } else if (this.fRegion != '') {
-      tablaUsuarios.forEach((x) => {
+      this.usuariosReg.usuariosRegistrados.forEach((x) => {
         if (x.region.includes(this.fRegion)) {
           this.usuarios.push(x);
         }
@@ -79,7 +82,7 @@ export class ReporteUsuariosComponent implements OnInit {
    */
   reiniciar() {
     this.contadorTabla = 1;
-    this.usuarios = tablaUsuarios;
+    this.usuarios = this.usuariosReg.usuariosRegistrados;
   }
   //#endregion
 }

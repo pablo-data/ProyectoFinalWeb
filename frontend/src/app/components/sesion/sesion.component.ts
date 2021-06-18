@@ -1,5 +1,4 @@
 import { LoginService } from './../../servicios/login.service';
-import { miUsuario } from '../../interfaces/Usuario';
 import { HeaderLoginService } from '../../servicios/header-login.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -32,18 +31,17 @@ export class IniciarSesionUsuarioComponent implements OnInit {
     });
   }
   send() {
-     
     this.login.token().subscribe(token => {
-      this.login.validarLogin(this.formLogin.get('email').value,this.formLogin.get('password').value,token.message)
-        .subscribe(data => {
-          console.log(data);
-          if (data.lenght == 0) {
-            //mensaje de error
+      this.login.validarLoginUser(
+          this.formLogin.get('email').value,
+          this.formLogin.get('password').value,
+          token.message
+        ).subscribe((data) => {
+          if (data.message=='') {
             console.log('Login no existe');
           } else {
-            
             this.data = data;
-            this.login.usuario = data;
+            this.login.idUsuario = data.message[0].idUsuario;
             this.headerLog.headerTrigger.emit(this.data);
             this.router.navigate(['/usuarioHome']);
           }

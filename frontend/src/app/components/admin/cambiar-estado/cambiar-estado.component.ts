@@ -8,16 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./cambiar-estado.component.scss'],
 })
 export class CambiarEstadoComponent implements OnInit {
-  public usuarioSeleccionado: Usuario = {
-    nombres: '',
-    apellidos: '',
-    direccion: '',
-    rut: '',
-    region: '',
-    comuna: '',
-    email: '',
-    tickets: [],
-  };
+   
   public estados: string[] = ['Abierto', 'Cerrado', 'Desarrollo'];
   public formEstado: FormGroup = new FormGroup({});
 
@@ -29,11 +20,7 @@ export class CambiarEstadoComponent implements OnInit {
 
   ngOnInit(): void {}
   devolverNombreCompleto() {
-    return (
-      this.usuarioSeleccionado.nombres +
-      ' ' +
-      this.usuarioSeleccionado.apellidos
-    );
+     
   }
   send(){
     
