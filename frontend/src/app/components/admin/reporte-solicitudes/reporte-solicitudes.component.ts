@@ -25,4 +25,8 @@ export class ReporteSolicitudesComponent implements OnInit {
     console.log(ticket);
     this.router.navigate(['/cambiarEstado']);
   }
+  irEnviarRespuesta(ticket:Ticket){
+    console.log(ticket);
+    this.router.navigate(['/enviarRespuesta']);
+  }
 }
