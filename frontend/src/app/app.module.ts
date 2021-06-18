@@ -22,6 +22,7 @@ import { ReporteSolicitudesComponent } from './components/admin/reporte-solicitu
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+
 import { IniciarSesionAdminComponent } from './components/admin/iniciar-sesion-admin/iniciar-sesion-admin.component';
 @NgModule({
   declarations: [
