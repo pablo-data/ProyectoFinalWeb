@@ -41,7 +41,7 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const form = req.body;
     try {
         const result = yield form_controller_1.default.postForm(form);
-        respuesta_module_1.default.logrado(req, res, 'Se agregó una nueva solicitud correctamente', 201);
+        respuesta_module_1.default.logrado(req, res, result[0].insertId, 201);
     }
     catch (error) {
         console.log(error);
