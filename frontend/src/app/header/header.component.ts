@@ -12,9 +12,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.headerLog.headerTrigger.subscribe(data=>{
-      console.log(data);
       this.nombreUsuario=data.nombres+' '+data.apellidos;
       this.usuarioIniciado=true;
+      console.log(this.nombreUsuario);
     });
   }
 }
