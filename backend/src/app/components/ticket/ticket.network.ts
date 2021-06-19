@@ -36,7 +36,7 @@ router.post('/', async (req: Request, res: Response) => {
    
     try{
         const result: any = await controller.postTicket(ticket);
-        respuesta.logrado(req, res, 'Se agregó un ticket correctamente', 201);
+        respuesta.logrado(req, res, result[0].insertId, 201);
     }
     catch(error){
         console.log(error);
