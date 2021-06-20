@@ -8,11 +8,14 @@ import { environment } from 'src/environments/environment';
 })
 export class SolicitudesReclamoService {
   constructor(private http: HttpClient) {}
-  getReclamos(): Observable<any> {
+  getForms(): Observable<any> {
     return this.http.get(`${environment.apiGetForms}`);
   }
   getTickets(): Observable<any> {
     return this.http.get(`${environment.apiTickets}`);
+  }
+  getForm(id:number):Observable<any>{
+    return this.http.get(`${environment.apiGetForm}${id}`);
   }
   patchEstadoTicket(idTicket: number, estado: string): Observable<any> {
     let headers = new HttpHeaders();

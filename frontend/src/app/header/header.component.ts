@@ -17,12 +17,12 @@ export class HeaderComponent implements OnInit {
     this.login.headerTrigger.subscribe((data) => {
       console.log(data);
       this.nombreUsuario = data;
-      if (sessionStorage.getItem('esAdmin') == 'true') this.esAdmin = true;
+      if (this.login.getRol()) this.esAdmin = true;
       this.usuarioIniciado = true;
     });
     if (this.login.logueado())
       this.nombreUsuario = this.login.getNombreUsuario();
-    if (sessionStorage.getItem('esAdmin') == 'true') this.esAdmin = true;
+    if (this.login.getRol()) this.esAdmin = true;
     if (sessionStorage.getItem('enSesion')) this.usuarioIniciado = true;
   }
   /**

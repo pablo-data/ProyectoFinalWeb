@@ -1,6 +1,7 @@
 <header>
     <ul class="d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
+             
             <li class="margin">
                 <img class="icono" src="../assets/img/icono 3.png" alt="">
             </li>
@@ -9,8 +10,7 @@
             </li>
         </div>
         <div *ngIf="usuarioIniciado" class="d-flex align-items-center">
-             
-            <li class="margin">
+            <li class="margin nombre">
                 <h2 style="color: white;">{{nombreUsuario}}</h2>
             </li>
              
@@ -20,7 +20,7 @@
             </li>
             <li>
                 <div>
-                    <button mat-raised-button class="btn" style="background-color: red;" (click)="salir()">Salir</button>
+                    <button mat-raised-button class="btn btn-salir" style="background-color: red;" (click)="salir()">Salir</button>
                 </div>
             </li>
         </div>

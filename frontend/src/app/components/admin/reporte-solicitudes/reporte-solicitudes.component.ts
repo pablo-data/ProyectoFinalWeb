@@ -1,8 +1,8 @@
+import { Ticket } from 'src/app/interfaces/Usuario';
 import { SolicitudesReclamoService } from './../../../servicios/solicitudes-reclamo.service';
 import { TicketForm } from './../../../interfaces/Usuario';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Ticket } from '../../../../../../backend/src/app/models/ticket.model';
 
 @Component({
   selector: 'app-reporte-solicitudes',
@@ -11,52 +11,67 @@ import { Ticket } from '../../../../../../backend/src/app/models/ticket.model';
 })
 export class ReporteSolicitudesComponent implements OnInit {
   public ticketForms: TicketForm[] = [];
-  private tickets:Ticket[]=[];
+  public contAbierto: number=0;
+  public contCerrado: number=0;
+  public contDesarrollo: number=0;
+
   constructor(
     private router: Router,
     private solicitudes: SolicitudesReclamoService
   ) {}
 
   ngOnInit(): void {
-    this.solicitudes.getReclamos().subscribe((data) => {
-      if (data.message == '') {
-      } else {
+    this.solicitudes.getTickets().subscribe((data) => {
+      if (data.message != '') {
         this.ticketForms = data.message;
-        console.log(this.ticketForms);
-      }
-    });
-    this.solicitudes.getTickets().subscribe(data=>{
-      if(data.message!=''){
-        this.tickets=data.message;
+        this.ticketForms.forEach((item) => {
+          this.solicitudes.getForm(item.idTicket).subscribe((data) => {
+            if (data.message != '') {
+              item.asunto = data.message[0].asunto;
+              item.descripcion = data.message[0].descripcion;
+              item.respuesta=data.message[0].respuesta;
+              console.log(item);
+            }
+          });
+        });
       }
     });
   }
+  setAbiertos(){
+    this.contAbierto++;
+  }
+  setCerrados(){
+    this.contCerrado++;
+  }
+  setDesarrollos(){
+    this.contDesarrollo++;
+  }
+  /**
+   * Redirige a la vista de enviar respuesta y toma el ticket seleccionado
+   * como referencia para cargarlo en la nueva vista.
+   * @param ticket ticket seleccionado por el administrador
+   */
   irEditarEstado(ticket: TicketForm) {
     let id = ticket.idFormulario;
-    this.tickets.forEach((item) => {
-      if (item.formulario_idFormulario == id.toString()) {
-        sessionStorage.setItem('ticket', JSON.stringify(item));
-        this.router.navigate(['/cambiarEstado']);
-      }
-    });
-    this.ticketForms.forEach(item=>{
-      if(item.idFormulario==id){
-        sessionStorage.setItem('ticketForm',JSON.stringify(item));
-      }
-    });
-  }
-  irEnviarRespuesta(ticket: TicketForm) {
-    let id=ticket.idFormulario;
-    console.log(ticket);
-    this.tickets.forEach(item=>{
-      if (item.formulario_idFormulario == id.toString()) {
-        sessionStorage.setItem('ticket', JSON.stringify(item));
-        this.router.navigate(['/enviarRespuesta']);
-      }
-    });
     this.ticketForms.forEach((item) => {
       if (item.idFormulario == id) {
         sessionStorage.setItem('ticketForm', JSON.stringify(item));
+        this.router.navigate(['/cambiarEstado']);
+      }
+    });
+  }
+  /**
+   * Redirige a la vista de enviar respuesta y toma el ticket seleccionado
+   * como referencia para cargarlo en la nueva vista.
+   * @param ticket ticket seleccionado por el administrador
+   */
+  irEnviarRespuesta(ticket: TicketForm) {
+    let id = ticket.idFormulario;
+
+    this.ticketForms.forEach((item) => {
+      if (item.idFormulario == id) {
+        sessionStorage.setItem('ticketForm', JSON.stringify(item));
+        this.router.navigate(['/enviarRespuesta']);
       }
     });
   }
