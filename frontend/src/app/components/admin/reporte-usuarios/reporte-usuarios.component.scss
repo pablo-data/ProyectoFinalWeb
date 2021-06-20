@@ -9,7 +9,19 @@ $prioridad-media:#F0D856;
 .table-header {
   background-color: $main-color;
 }
-
+@media(max-width:420px){
+  .contenido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mat-form-field{
+    margin: 5px 0;
+  }
+  button{
+    margin: 5px 0;
+  }
+}
 th {
   color: white;
 }
