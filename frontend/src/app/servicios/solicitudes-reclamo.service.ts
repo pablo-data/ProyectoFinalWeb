@@ -10,8 +10,9 @@ export class SolicitudesReclamoService {
 
   constructor(private http:HttpClient) { }
   getReclamos():Observable<any>{
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
     return this.http.get(`${environment.apiGetForms}`);
+  }
+  getTickets():Observable<any>{
+      return this.http.get(`${environment.apiTickets}`);
   }
 }
