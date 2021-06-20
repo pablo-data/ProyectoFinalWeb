@@ -1,0 +1,10 @@
+@media(max-width:360px){
+    .contenido{
+        flex-direction: column;
+        width: 60%;
+        margin: auto;
+    }
+    .mat-button-toggle{
+        margin: 5px 0;
+    }
+}

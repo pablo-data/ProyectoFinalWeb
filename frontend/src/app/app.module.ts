@@ -24,6 +24,7 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { IniciarSesionAdminComponent } from './components/admin/iniciar-sesion-admin/iniciar-sesion-admin.component';
+import { RecuperarPassComponent } from './components/recuperar-pass/recuperar-pass.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { IniciarSesionAdminComponent } from './components/admin/iniciar-sesion-a
     AdminHomeComponent,
     HeaderComponent,
     IniciarSesionAdminComponent,
+    RecuperarPassComponent,
   ],
   imports: [
     BrowserModule,

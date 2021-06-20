@@ -14,7 +14,7 @@ export class AdminHomeComponent implements OnInit {
     private router: Router,
     private usuariosReg: UsuariosRegistradosService,
   ) {}
-
+  
   ngOnInit(): void {
     this.usuariosReg.cargarUsuarios().subscribe((data) => {
       this.usuariosReg.usuariosRegistrados =data.message as Usuario[];

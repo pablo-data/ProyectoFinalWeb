@@ -1,13 +1,13 @@
 <main class="container text-center">
     <form [formGroup]="formEstado" (submit)="send()" class="panel-margin" >
-        <p>USUARIO:{{devolverNombreCompleto()}}</p>
+        <p>USUARIO:{{nombreUsuario}}</p>
         <br>
-        <p>ASUNTO:{{"xd"}}</p>
+        <p>ASUNTO:{{ticketForm.asunto}}</p>
         <br>
         <label>DESCRIPCION:</label>
         <br>
         <textarea cols="30" rows="10" readonly>
-        {{"usted no sabe lo que es el shitpost"}}
+        {{ticketForm.descripcion}}
         </textarea>
         <br>
         <mat-form-field appearance="fill" class="input">

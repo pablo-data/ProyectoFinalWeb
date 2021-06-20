@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HeaderLoginService } from 'src/app/servicios/header-login.service';
 import { LoginService } from 'src/app/servicios/login.service';
 
 @Component({
@@ -14,10 +13,10 @@ export class IniciarSesionAdminComponent implements OnInit {
   public formLogin: FormGroup = new FormGroup({});
   public siteKey: string = '';
   public llenadoCompleto: boolean = false;
+  public mensaje:string;
   constructor(
     private formBuilder: FormBuilder,
     public router: Router,
-    private headerLog: HeaderLoginService,
     private login: LoginService,
   ) {
     this.siteKey = '6LdZ8CgbAAAAACt5zy_JxiKcrrDJKjSeKfw-9Wf6';
@@ -40,24 +39,15 @@ export class IniciarSesionAdminComponent implements OnInit {
         )
         .subscribe((data) => {
           if (data.message == '') {
-            //mensaje de error
             console.log('Login no existe');
+            this.mensaje="Usuario no encontrado";
           } else {
             this.data = data;
-            this.headerLog.headerTrigger.emit(this.data);
+            this.mensaje ='';
+            this.login.setLogueoStatus('true', data.message[0].idUsuario);
             this.router.navigate(['/adminHome']);
           }
         });
     });
-  }
-  /**
-   * Comprueba que el formulario este completo
-   */
-  checkForm(): boolean {
-    if (this.formLogin.invalid) return false;
-    else return true;
-  }
-  recordar() {
-    //
   }
 }
