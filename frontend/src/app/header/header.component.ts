@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { LoginService } from '../servicios/login.service';
 @Component({
@@ -10,19 +11,28 @@ export class HeaderComponent implements OnInit {
   public usuarioIniciado: boolean = false;
   public esAdmin: boolean = false;
   @Input() data;
-  constructor(
-    private login: LoginService,
-  ) {}
+  constructor(private login: LoginService,private router:Router) {}
 
   ngOnInit(): void {
-    this.login.headerTrigger.subscribe(data=>{
+    this.login.headerTrigger.subscribe((data) => {
       console.log(data);
-      this.nombreUsuario=data;
+      this.nombreUsuario = data;
       if (sessionStorage.getItem('esAdmin') == 'true') this.esAdmin = true;
       this.usuarioIniciado = true;
     });
-    if (this.login.logueado())this.nombreUsuario=this.login.getNombreUsuario();
+    if (this.login.logueado())
+      this.nombreUsuario = this.login.getNombreUsuario();
     if (sessionStorage.getItem('esAdmin') == 'true') this.esAdmin = true;
-    if(sessionStorage.getItem('enSesion'))this.usuarioIniciado = true;
+    if (sessionStorage.getItem('enSesion')) this.usuarioIniciado = true;
+  }
+  /**
+   * Sale de la sesion actual
+   */
+  salir() {
+    sessionStorage.clear();
+    this.nombreUsuario = '';
+    this.usuarioIniciado = false;
+    if(!this.esAdmin)this.router.navigate(['/']);
+    else{this.esAdmin=false; this.router.navigate(['/adminIniciar']);}
   }
 }
