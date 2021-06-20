@@ -1,8 +1,7 @@
-import { miAdmin } from './../../../interfaces/admin';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HeaderLoginService } from 'src/app/servicios/header-login.service';
+import { LoginService } from 'src/app/servicios/login.service';
 
 @Component({
   selector: 'app-iniciar-sesion-admin',
@@ -10,14 +9,14 @@ import { HeaderLoginService } from 'src/app/servicios/header-login.service';
   styleUrls: ['./iniciar-sesion-admin.component.scss'],
 })
 export class IniciarSesionAdminComponent implements OnInit {
-  @Input() data: any;
   public formLogin: FormGroup = new FormGroup({});
   public siteKey: string = '';
   public llenadoCompleto: boolean = false;
+  public mensaje:string;
   constructor(
     private formBuilder: FormBuilder,
     public router: Router,
-    private headerLog: HeaderLoginService
+    private login: LoginService,
   ) {
     this.siteKey = '6LdZ8CgbAAAAACt5zy_JxiKcrrDJKjSeKfw-9Wf6';
   }
@@ -29,25 +28,24 @@ export class IniciarSesionAdminComponent implements OnInit {
       recaptcha: ['', Validators.required],
     });
   }
-  send(): any {
-    this.loguearse();
-    //aca deberia comunicarse con la bd y esperar la respuesta,
-    //luego si el inicio de sesion es valido cambiar la vista
-  }
-  loguearse() {
-    //test
-    this.data = miAdmin;
-    this.headerLog.headerTrigger.emit(this.data);
-    this.router.navigate(['/adminHome']);
-  }
-  /**
-   * Comprueba que el formulario este completo
-   */
-  checkForm(): boolean {
-    if (this.formLogin.invalid) return false;
-    else return true;
-  }
-  recordar() {
-    //
+  send() {
+    this.login.token().subscribe((token) => {
+      this.login
+        .validarLoginAdmin(
+          this.formLogin.get('email').value,
+          this.formLogin.get('password').value,
+          token.message
+        )
+        .subscribe((data) => {
+          if (data.message == '') {
+            console.log('Login no existe');
+            this.mensaje="Usuario no encontrado";
+          } else {
+            this.mensaje ='';
+            this.login.setLogueoStatus('true', data.message[0].idAdmin);
+            this.router.navigate(['/adminHome']);
+          }
+        });
+    });
   }
 }

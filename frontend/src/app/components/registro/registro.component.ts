@@ -1,3 +1,5 @@
+import { Usuario } from './../../interfaces/Usuario';
+import { RegistroService } from './../../servicios/registro.service';
 import { regionesI } from './../../interfaces/regiones';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,8 +15,8 @@ export class RegistroComponent implements OnInit {
   public formRegistro: FormGroup = new FormGroup({});
   public regiones: Array<Region> = [];
   public comunasRegion: Array<string> = [];
-
-  constructor(private formBuilder: FormBuilder, public router: Router) {}
+  public mensaje:string='';
+  constructor(private formBuilder: FormBuilder, public router: Router,private registro:RegistroService) {}
 
   ngOnInit(): void {
     this.formRegistro = this.formBuilder.group({
@@ -41,8 +43,22 @@ export class RegistroComponent implements OnInit {
   }
   error(){}
   registrarse():any {
-    //Aqui deberia comunicarse con la bd
-    //en caso exitoso: 
-    this.router.navigate(['misesion']);
+    let usuario: Usuario = {
+      nombres: this.formRegistro.get('nombre').value,
+      apellidos: this.formRegistro.get('apellido').value,
+      rut: this.formRegistro.get('rut').value,
+      direccion: this.formRegistro.get('direccion').value,
+      comuna: this.formRegistro.get('comuna').value,
+      email: this.formRegistro.get('email').value,
+      region: this.formRegistro.get('region').value,
+      contraseña: this.formRegistro.get('password').value,
+    };
+    this.registro.registrar(usuario).subscribe(data=>{
+      if(data.error>0){
+        this.mensaje="El usuario ya existe"
+      }else{
+        this.router.navigate(['usuarioHome']);
+      }
+    });
   }
 }

@@ -1,5 +1,6 @@
-import { HeaderLoginService } from './../servicios/header-login.service';
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { LoginService } from '../servicios/login.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,13 +9,30 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   public nombreUsuario: string = '';
   public usuarioIniciado: boolean = false;
-  constructor(private headerLog:HeaderLoginService) {}
+  public esAdmin: boolean = false;
+  @Input() data;
+  constructor(private login: LoginService,private router:Router) {}
 
   ngOnInit(): void {
-    this.headerLog.headerTrigger.subscribe(data=>{
-      this.nombreUsuario=data.nombres+' '+data.apellidos;
-      this.usuarioIniciado=true;
-      console.log(this.nombreUsuario);
+    this.login.headerTrigger.subscribe((data) => {
+      console.log(data);
+      this.nombreUsuario = data;
+      if (sessionStorage.getItem('esAdmin') == 'true') this.esAdmin = true;
+      this.usuarioIniciado = true;
     });
+    if (this.login.logueado())
+      this.nombreUsuario = this.login.getNombreUsuario();
+    if (sessionStorage.getItem('esAdmin') == 'true') this.esAdmin = true;
+    if (sessionStorage.getItem('enSesion')) this.usuarioIniciado = true;
+  }
+  /**
+   * Sale de la sesion actual
+   */
+  salir() {
+    sessionStorage.clear();
+    this.nombreUsuario = '';
+    this.usuarioIniciado = false;
+    if(!this.esAdmin)this.router.navigate(['/']);
+    else{this.esAdmin=false; this.router.navigate(['/adminIniciar']);}
   }
 }

@@ -11,21 +11,22 @@
                 <div><input type="password" id="password" formControlName="password" placeholder="CONTRASEÑA"
                         class="text-center input-sesion"></div>
                 <div>
-                    <mat-checkbox type="checkbox" id=" "  >RECORDAR</mat-checkbox>
-                </div>
+                    <button [routerLink]="['/recuperacion']" routerLinkActive="router-link-active"  mat-raised-button class="btn" >RECUPERAR CONTRASEÑA</button>
+                </div> 
                 <div class="text-center">
-                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
+                    <ngx-recaptcha2 class="g-recaptcha" #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
                 </div>
-        
+                <div class="mensaje-error">
+                    <p>{{mensaje}}</p>
+                </div>
                 <div>
                     <button [disabled]="formLogin.invalid" mat-raised-button class="btn" type="submit">ENVIAR</button>
                 </div>
             </form>
         </div>
+         
         <div class="contenido-centrado">
             <a href="" style="color: black;" [routerLink]="['registro']" routerLinkActive="router-link-active" >REGISTRARSE</a>
         </div>
     </section>
-     
- 
 </main> 

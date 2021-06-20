@@ -1,6 +1,4 @@
 import { LoginService } from './../../servicios/login.service';
-import { miUsuario } from '../../interfaces/Usuario';
-import { HeaderLoginService } from '../../servicios/header-login.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,10 +13,10 @@ export class IniciarSesionUsuarioComponent implements OnInit {
   public formLogin: FormGroup = new FormGroup({});
   public siteKey: string = '';
   public llenadoCompleto: boolean = false;
+  public mensaje:string='';
   constructor(
     private formBuilder: FormBuilder,
     public router: Router,
-    private headerLog: HeaderLoginService,
     private login: LoginService,
   ) {
     this.siteKey = '6LdZ8CgbAAAAACt5zy_JxiKcrrDJKjSeKfw-9Wf6';
@@ -32,25 +30,22 @@ export class IniciarSesionUsuarioComponent implements OnInit {
     });
   }
   send() {
-     
     this.login.token().subscribe(token => {
-      this.login.validarLogin(this.formLogin.get('email').value,this.formLogin.get('password').value,token.message)
-        .subscribe(data => {
-          console.log(data);
-          if (data.lenght == 0) {
-            //mensaje de error
+      this.login.validarLoginUser(
+          this.formLogin.get('email').value,
+          this.formLogin.get('password').value,
+          token.message
+        ).subscribe((data) => {
+          if (data.message=='') {
             console.log('Login no existe');
+            this.mensaje="Usuario no encontrado";
           } else {
-            
             this.data = data;
-            this.login.usuario = data;
-            this.headerLog.headerTrigger.emit(this.data);
+            this.mensaje = '';
+            this.login.setLogueoStatus('false', data.message[0].idUsuario);
             this.router.navigate(['/usuarioHome']);
           }
         });
     });
-  }
-  recordar() {
-    //
   }
 }

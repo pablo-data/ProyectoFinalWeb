@@ -16,13 +16,13 @@
                 <div class="text-center">
                     <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
                 </div>
-
+                <div class="mensaje-error">
+                    <p>{{mensaje}}</p>
+                </div>
                 <div>
                     <button [disabled]="formLogin.invalid" mat-raised-button class="btn" type="submit">ENVIAR</button>
                 </div>
             </form>
         </div>
     </section>
-
-
 </main>

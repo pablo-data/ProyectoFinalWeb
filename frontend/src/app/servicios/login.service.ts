@@ -1,29 +1,83 @@
 import { environment } from './../../environments/environment';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  public usuario: string='';
+  @Output() headerTrigger:EventEmitter<any>=new EventEmitter();
   constructor(private http: HttpClient) {}
-  validarLogin(usuario: string, password: string,token:string): Observable<any> {
+  /**
+   * Loguea al usuario segun su rol
+   * @param esAdmin si es admin o no
+   * @param id la id del usuario o admin
+   */
+  setLogueoStatus(esAdmin: string, id: number) {
+    sessionStorage.setItem('esAdmin', esAdmin);
+    sessionStorage.setItem('enSesion', 'true');
+    sessionStorage.setItem('idUsuario', id.toString());
+    this.getUser().subscribe(data=>{
+      console.log(data.message[0].nombres + ' ' + data.message[0].apellidos);
+      sessionStorage.setItem('nombreUsuario', data.message[0].nombres+' '+data.message[0].apellidos);
+      this.headerTrigger.emit(data.message[0].nombres + ' ' + data.message[0].apellidos);
+    });
+  }
+  getNombreUsuario(): string {
+    return sessionStorage.getItem('nombreUsuario');
+  }
+  /**
+   * 
+   * @returns devuelve la id del usuario o admin.
+   */
+  getIdUsuario(): number {
+    return Number.parseInt(sessionStorage.getItem('idUsuario'));
+  }
+  /**
+   * Verifica que el usuario se encuentra logueado
+   * @returns si el usuario está logueado o no
+   */
+  logueado(): boolean {
+    if (sessionStorage.getItem('enSesion') != null) return true;
+    else return false;
+  }
+  validarLoginUser(
+    usuario: string,
+    password: string,
+    token: string
+  ): Observable<any> {
     let headers = new HttpHeaders();
-     headers = headers.append('Content-Type', 'application/json');
-     headers = headers.append('access-token', token);
-    console.log(usuario,password, token);
-    /*
-    const params = new HttpParams();
-    params.set('email', usuario);
-    params.set('password', password);
-    */
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('access-token', token);
+
     return this.http.get(
-      `${environment.apiLogin}/login/user?email=${usuario}&password=${password}`,{ headers: headers }
+      `${environment.apiLoginUser}/login/user?email=${usuario}&password=${password}`,
+      { headers: headers }
     );
   }
+  validarLoginAdmin(
+    usuario: string,
+    password: string,
+    token: string
+  ): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('access-token', token);
+
+    return this.http.get(
+      `${environment.apiLoginAdmin}?email=${usuario}&password=${password}`,
+      { headers: headers }
+    );
+  }
+  /**
+   * Solicita el token.
+   * @returns devuelve el token
+   */
   token(): Observable<any> {
     return this.http.get(`${environment.apiToken}`);
+  }
+  getUser(): Observable<any> {
+    return this.http.get(`${environment.apiGetUser}${sessionStorage.getItem('idUsuario')}`);
   }
 }

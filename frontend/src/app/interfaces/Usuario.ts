@@ -1,12 +1,37 @@
-export interface Ticket{
-  prioridad:string;
-  estado:string;
-  numero:number;
-  asunto:string;
-  descripcion:string;
+/**
+ * Corresponde al ticket que visualiza el administrador
+ */
+export interface TicketForm {
+  prioridad_idPrioridad: number;
+  asunto: string;
+  descripcion: string;
+  categoria: string;
+  usuario_idUsuario: number;
+  idFormulario:number;
 }
-//Todos los usuarios de la base de datos con los que el 
-//administrador puede interactuar en la web.
+/**
+ * Corresponde al form que el usuario llena en la web,
+ * ignorando el idFormulario que solamente es obtenido
+ * desde la base de datos.
+ */
+export interface FormReclamo {
+  prioridad_idPrioridad: number;
+  asunto: string;
+  descripcion: string;
+  categoria: string;
+  usuario_idUsuario: number;
+}
+/**
+ * Ticket generado luego de que el usuario complete
+ * el formulario.
+ */
+export interface Ticket {
+  idTicket?:number;
+  respuesta: string;
+  estado: string;
+  formulario_idFormulario: number;
+  prioridad_idPrioridad: number;
+}
 export interface Usuario {
   nombres: string;
   apellidos: string;
@@ -15,25 +40,5 @@ export interface Usuario {
   region: string;
   comuna: string;
   email: string;
-  tickets:Array<Ticket>;
+  contraseña:string;
 }
-export var ticketUsuarios: Ticket[] = [
-   
-];
-export var miUsuario: Usuario = {
-  nombres: '',
-  apellidos: '',
-  rut: '',
-  direccion: '',
-  region: '',
-  comuna: '',
-  email: '',
-  tickets: ticketUsuarios,
-};
-/*Tabla de usuarios la cual puede ver el administrador.
-
-  test
-*/
-export var tablaUsuarios: Usuario[] = [
-   
-];

@@ -1,1 +1,22 @@
-<p>enviar-respuesta works!</p>
+<main class="container text-center">
+    <form [formGroup]="formRespuesta" (submit)="send()" class="panel-margin">
+        <p>USUARIO:{{nombreUsuario}}</p>
+        <br>
+        <p>ASUNTO:{{ ticketForm.asunto}}</p>
+        <br>
+        <label>DESCRIPCION:</label>
+        <br>
+        <textarea cols="30" rows="10" readonly>
+        {{ticketForm.descripcion}}
+        </textarea>
+        <br>
+        <label for="" class="d-block">Respuesta</label>
+        <mat-form-field appearance="outline">
+            <textarea formControlName="respuesta" matInput></textarea>
+        </mat-form-field>
+        <div>
+            <button [disabled]="formRespuesta.invalid" mat-raised-button class="btn" type="submit">ENVIAR</button>
+        </div>
+    </form>
+
+</main>

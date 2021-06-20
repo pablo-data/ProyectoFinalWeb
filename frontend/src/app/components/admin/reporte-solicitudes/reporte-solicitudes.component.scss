@@ -15,20 +15,36 @@ $prioridad-media:#F0D856;
   height: 30px;
   background-color: white;
 }
-
+.container-box{
+  max-width: 300px;
+}
 .box {
   margin: 10px 0;
   padding: 8px;
 }
- 
+.contenido-btn{
+  margin-left: auto;
+}
 .prioridad-baja {
   background-color: $prioridad-baja;
 }
-
+.contenido{
+  justify-content: center;
+  margin: auto;
+}
 .prioridad-media {
   background-color: $prioridad-media;
 }
 
 .prioridad-alta {
   background-color: $prioridad-alta;
+}
+@media(max-width:768px){
+  .contenido {
+    flex-direction: column;
+    align-items: center;
+  }
+  .container-box {
+    width: 100%;
+  }
 }

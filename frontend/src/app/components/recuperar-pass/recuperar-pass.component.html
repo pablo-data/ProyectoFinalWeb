@@ -1,0 +1,18 @@
+<main class="container">
+    <div class="contenido-centrado">
+        <h1 style="color:#204051">SECCIÓN RECUPERACIÓN CONTRASEÑA</h1>
+    </div>
+    <section>
+        <div class="panel-bg contenido-centrado text-center">
+            <form [formGroup]="formRecuperar" (ngSubmit)="send()" class="panel-margin">
+                <div><input type="password" id="password" formControlName="password" placeholder="NUEVA CONTRASEÑA"
+                        class="text-center input-sesion"></div>
+                <div><input type="password" id="password2" formControlName="password2" placeholder="CONFIRME NUEVA CONTRASEÑA"
+                        class="text-center input-sesion"></div>
+                <div>
+                    <button [disabled]="formRecuperar.invalid" mat-raised-button class="btn" type="submit">ENVIAR</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>

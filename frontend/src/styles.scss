@@ -12,11 +12,12 @@ header {
   height: 60px;
   background-color: $main-color-dark;
 }
+ 
 footer {
-  position: fixed;
   bottom: 0;
   width: 100%;
   height: 60px;
+  position:fixed;
   background-color: $main-color-dark;
 }
  
@@ -50,6 +51,28 @@ input{
   }
 
 }
+.icono {
+  width: 60px;
+}
+@media(max-width:400px) {
+  .icono {
+    width: 30px;
+  }
+  .mat-h2,
+  .mat-title,
+  .mat-typography h2 {
+    font-size: 12px;
+  }
+
+  .mat-h1,
+  .mat-title,
+  .mat-typography h1 {
+    font-size: 15px;
+  }
+  .mat-button-toggle{
+    font-size: 12px;
+  }
+}
 .panel-bg{
   background-color: $main-color-light;
   padding:10px;
@@ -74,5 +97,8 @@ label{
 .panel-margin>div{
   margin-top: 20px;
   margin-bottom: 20px;
+}
+.mensaje-error{
+  color: red;
 }
  
