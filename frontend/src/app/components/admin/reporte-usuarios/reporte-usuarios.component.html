@@ -17,30 +17,30 @@
     </div>
     <div class="table-responsive">
 
-    <table class="table">
-        <thead class="table-header">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">NOMBRES</th>
-                <th scope="col">APELLIDOS</th>
-                <th scope="col">RUT</th>
-                <th scope="col">REGION</th>
-                <th scope="col">COMUNA</th>
-                <th scope="col">EMAIL</th>
-            </tr>
-        </thead>
-        <tbody class="table-body">
-            <tr class="table-active" *ngFor="let item of usuarios">
-                <th scope="row" style="color: black;">0</th>
-                <td>{{item.nombres}}</td>
-                <td>{{item.apellidos}}</td>
-                <td>{{item.rut}}</td>
-                <td>{{item.region}}</td>
-                <td>{{item.comuna}}</td>
-                <td>{{item.email}}</td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table">
+            <thead class="table-header">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NOMBRES</th>
+                    <th scope="col">APELLIDOS</th>
+                    <th scope="col">RUT</th>
+                    <th scope="col">REGION</th>
+                    <th scope="col">COMUNA</th>
+                    <th scope="col">EMAIL</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                <tr class="table-active" *ngFor="let item of usuarios">
+                    <th scope="row" style="color: black;">0</th>
+                    <td>{{item.nombres}}</td>
+                    <td>{{item.apellidos}}</td>
+                    <td>{{item.rut}}</td>
+                    <td>{{item.region}}</td>
+                    <td>{{item.comuna}}</td>
+                    <td>{{item.email}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 </div>

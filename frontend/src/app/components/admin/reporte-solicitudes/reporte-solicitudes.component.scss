@@ -15,12 +15,17 @@ $prioridad-media:#F0D856;
   height: 30px;
   background-color: white;
 }
+.contenido-texto-box{
+  max-width: 60%;
+}
 .container-box{
   max-width: 300px;
 }
 .box {
   margin: 10px 0;
   padding: 8px;
+  border-style: solid;
+  border-width: 1px;
 }
 .contenido-btn{
   margin-left: auto;
@@ -38,6 +43,18 @@ $prioridad-media:#F0D856;
 
 .prioridad-alta {
   background-color: $prioridad-alta;
+}
+.estado-box{
+  margin: auto;
+  background-color: white;
+  text-align: center;
+  padding: 4px;
+  border-style: solid;
+  border-width: 1px;
+  width: fit-content;
+}
+.estado-box p{
+  margin:auto;
 }
 @media(max-width:768px){
   .contenido {

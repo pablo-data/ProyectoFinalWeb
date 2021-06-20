@@ -22,7 +22,8 @@ import { ReporteSolicitudesComponent } from './components/admin/reporte-solicitu
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { IniciarSesionAdminComponent } from './components/admin/iniciar-sesion-admin/iniciar-sesion-admin.component';
 import { RecuperarPassComponent } from './components/recuperar-pass/recuperar-pass.component';
 @NgModule({
@@ -55,6 +56,8 @@ import { RecuperarPassComponent } from './components/recuperar-pass/recuperar-pa
     MatTableModule,
     FormsModule,
     HttpClientModule,
+    MatSidenavModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

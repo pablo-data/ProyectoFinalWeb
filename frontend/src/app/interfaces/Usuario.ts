@@ -1,13 +1,19 @@
 /**
- * Corresponde al ticket que visualiza el administrador
+ * Corresponde al ticket que visualiza el administrador,
+ * contiene la informacion tanto del ticket generado luego
+ * de que el usuario completa el formulario de reclamo y del propio
+ * formulario, asi se despliegan los datos de ambos.
  */
 export interface TicketForm {
-  prioridad_idPrioridad: number;
+  idTicket?: number;
+  prioridad_idPrioridad?: number;
+  respuesta:string;
   asunto: string;
   descripcion: string;
   categoria: string;
-  usuario_idUsuario: number;
-  idFormulario:number;
+  estado: string;
+  usuario_idUsuario?: number;
+  idFormulario: number;
 }
 /**
  * Corresponde al form que el usuario llena en la web,
@@ -30,6 +36,16 @@ export interface Ticket {
   respuesta: string;
   estado: string;
   formulario_idFormulario: number;
+  prioridad_idPrioridad: number;
+}
+/**
+ * Corresponde al ticket que el usuario ve en la seccion de mis tickets.
+ */
+export interface TicketUsuario {
+  asunto: string;
+  descripcion: string;
+  respuesta: string;
+  estado: string;
   prioridad_idPrioridad: number;
 }
 export interface Usuario {

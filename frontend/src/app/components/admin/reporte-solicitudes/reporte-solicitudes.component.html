@@ -1,9 +1,13 @@
 <section class="container">
     <div class="d-flex contenido">
         <div class="flex-column flex-fill container-box">
+            <div *ngIf="contAbierto>0" class="estado-box">
+                <p>Abierto</p>
+            </div>
             <div *ngFor="let item of ticketForms">
-                <div *ngIf="item.prioridad_idPrioridad==5" class="prioridad-alta box d-flex">
-                    <div>
+                <div *ngIf="item.estado=='abierto'" class="prioridad-alta box d-flex">
+                    {{setAbiertos()}}
+                    <div class="contenido-texto-box">
                         {{item.asunto}}
                         <br><br>
                         {{item.descripcion}}
@@ -21,9 +25,13 @@
             </div>
         </div>
         <div class="flex-column flex-fill container-box">
+            <div *ngIf="contCerrado>0" class="estado-box">
+                <p>Cerrado</p>
+            </div>
             <div *ngFor="let item of ticketForms">
-                <div *ngIf="item.prioridad_idPrioridad==4" class="prioridad-media box d-flex  ">
-                    <div>
+                <div *ngIf="item.estado=='cerrado'" class="prioridad-media box d-flex  ">
+                    {{setCerrados()}}
+                    <div class="contenido-texto-box">
                         {{item.asunto}}
                         <br><br>
                         {{item.descripcion}}
@@ -41,9 +49,13 @@
             </div>
         </div>
         <div class="flex-column flex-fill container-box">
+            <div *ngIf="contDesarrollo>0" class="estado-box">
+                <p>En desarrollo</p>
+            </div>
             <div *ngFor="let item of ticketForms">
-                <div *ngIf="item.prioridad_idPrioridad==6" class="prioridad-baja box d-flex ">
-                    <div>
+                <div *ngIf="item.estado=='desarrollo'" class="prioridad-baja box d-flex ">
+                    {{setDesarrollos()}}
+                    <div class="contenido-texto-box">
                         {{item.asunto}}
                         <br><br>
                         {{item.descripcion}}

@@ -1,51 +1,103 @@
 <main class="container">
-    <section>
-        <div class="contenido">
-            <h2>INTRODUZCA LOS SIGUIENTES DATOS:</h2>
+    <section class="panel-margin">
+        <div class="d-flex justify-content-center contenido">
+            <mat-button-toggle value="bold" (click)="verTickets=false">Solicitud reclamo</mat-button-toggle>
+            <mat-button-toggle value="italic" (click)="verTickets=true">Mis tickets</mat-button-toggle>
         </div>
-        <form [formGroup]="formReclamo" (submit)="reclamar()">
-            <div class="panel-bg panel-reclamo contenido">
-                <div>
-                    <label for="" class="d-block">PRIORIDAD</label>
-                    <mat-form-field appearance="outline">
-                        <mat-label>SELECCIONE PRIORIDAD</mat-label>
-                        <mat-select formControlName="prioridad">
-                            <mat-option *ngFor="let item of prioridades" [value]="item" id="prioridad">
-                                {{item}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <label for="" class="d-block">CATEGORIA</label>
-                    <mat-form-field appearance="outline">
-                        <mat-label>SELECCIONE CATEGORIA</mat-label>
-                        <mat-select formControlName="categoria">
-                            <mat-option *ngFor="let item of categorias" [value]="item" id="categoria">
-                                {{item}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <label for="" class="d-block">ASUNTO</label>
-                    <mat-form-field appearance="outline">
-                        <input matInput class="text-left" type="text" id="asunto" formControlName="asunto">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <label for="" class="d-block">DESCRIPCION</label>
-                    <mat-form-field appearance="outline">
-                        <textarea formControlName="descripcion" matInput></textarea>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <p>{{mensaje}}</p>
-                </div>
-                <div>
-                    <button [disabled]="formReclamo.invalid" type="submit" mat-raised-button class="btn">ENVIAR</button>
-                </div>
+    </section>
+    <section>
+        <div *ngIf="!verTickets">
+            <div class="contenido">
+                <h2>INTRODUZCA LOS SIGUIENTES DATOS:</h2>
             </div>
-        </form>
+            <form [formGroup]="formReclamo" (submit)="reclamar()">
+                <div class="panel-bg panel-reclamo contenido">
+                    <div>
+                        <label for="" class="d-block">PRIORIDAD</label>
+                        <mat-form-field appearance="outline">
+                            <mat-label>SELECCIONE PRIORIDAD</mat-label>
+                            <mat-select formControlName="prioridad">
+                                <mat-option *ngFor="let item of prioridades" [value]="item" id="prioridad">
+                                    {{item}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <label for="" class="d-block">CATEGORIA</label>
+                        <mat-form-field appearance="outline">
+                            <mat-label>SELECCIONE CATEGORIA</mat-label>
+                            <mat-select formControlName="categoria">
+                                <mat-option *ngFor="let item of categorias" [value]="item" id="categoria">
+                                    {{item}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <label for="" class="d-block">ASUNTO</label>
+                        <mat-form-field appearance="outline">
+                            <input matInput class="text-left" type="text" id="asunto" formControlName="asunto">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <label for="" class="d-block">DESCRIPCION</label>
+                        <mat-form-field appearance="outline">
+                            <textarea formControlName="descripcion" matInput></textarea>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <p>{{mensaje}}</p>
+                    </div>
+                    <div>
+                        <button [disabled]="formReclamo.invalid" type="submit" mat-raised-button
+                            class="btn">ENVIAR</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div *ngIf="verTickets">
+            <div class="flex-column flex-fill container-box">
+                <div *ngFor="let item of misTickets">
+                    <div *ngIf="item.prioridad_idPrioridad==5 " class="prioridad-alta box d-flex">
+                        <div>
+                            {{item.asunto}}
+                            <br><br>
+                            {{item.descripcion}}
+                        </div>
+                        <div>
+                            {{item.estado}}
+                            <br><br>
+                            {{item.respuesta}}
+                        </div>
+                    </div>
+                    <div *ngIf="item.prioridad_idPrioridad==4 " class="prioridad-media box d-flex">
+                        <div>
+                            {{item.asunto}}
+                            <br><br>
+                            {{item.descripcion}}
+                        </div>
+                        <div>
+                            {{item.estado}}
+                            <br><br>
+                            {{item.respuesta}}
+                        </div>
+                    </div>
+                    <div *ngIf="item.prioridad_idPrioridad==6 " class="prioridad-baja box d-flex">
+                        <div>
+                            {{item.asunto}}
+                            <br><br>
+                            {{item.descripcion}}
+                        </div>
+                        <div>
+                            {{item.estado}}
+                            <br><br>
+                            {{item.respuesta}}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
     </section>
 </main>

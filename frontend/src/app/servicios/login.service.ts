@@ -1,13 +1,13 @@
-import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  @Output() headerTrigger:EventEmitter<any>=new EventEmitter();
+  @Output() headerTrigger: EventEmitter<any> = new EventEmitter();
   constructor(private http: HttpClient) {}
   /**
    * Loguea al usuario segun su rol
@@ -18,17 +18,29 @@ export class LoginService {
     sessionStorage.setItem('esAdmin', esAdmin);
     sessionStorage.setItem('enSesion', 'true');
     sessionStorage.setItem('idUsuario', id.toString());
-    this.getUser().subscribe(data=>{
-      console.log(data.message[0].nombres + ' ' + data.message[0].apellidos);
-      sessionStorage.setItem('nombreUsuario', data.message[0].nombres+' '+data.message[0].apellidos);
-      this.headerTrigger.emit(data.message[0].nombres + ' ' + data.message[0].apellidos);
-    });
+    if (esAdmin=='false') {
+      this.getUsuario(environment.apiGetUser).subscribe((data) => {
+        let nombre =data.message[0].nombres + ' ' + data.message[0].apellidos;
+        sessionStorage.setItem('nombreUsuario',nombre);
+        this.headerTrigger.emit(nombre);
+      });
+    } else {
+      this.getUsuario(environment.apiGetAdmin).subscribe((data) => {
+        let nombre = data.message[0].nombres + ' ' + data.message[0].apellidos;
+        sessionStorage.setItem('nombreUsuario',nombre);
+        this.headerTrigger.emit(nombre);
+      });
+    }
+  }
+  getRol(): boolean {
+    if (sessionStorage.getItem('esAdmin') == 'true') return true;
+    else return false;
   }
   getNombreUsuario(): string {
     return sessionStorage.getItem('nombreUsuario');
   }
   /**
-   * 
+   *
    * @returns devuelve la id del usuario o admin.
    */
   getIdUsuario(): number {
@@ -51,10 +63,7 @@ export class LoginService {
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append('access-token', token);
 
-    return this.http.get(
-      `${environment.apiLoginUser}/login/user?email=${usuario}&password=${password}`,
-      { headers: headers }
-    );
+    return this.http.get(`${environment.apiLoginUser}/login/user?email=${usuario}&password=${password}`,{ 'headers': headers });
   }
   validarLoginAdmin(
     usuario: string,
@@ -65,10 +74,7 @@ export class LoginService {
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append('access-token', token);
 
-    return this.http.get(
-      `${environment.apiLoginAdmin}?email=${usuario}&password=${password}`,
-      { headers: headers }
-    );
+    return this.http.get(`${environment.apiLoginAdmin}?email=${usuario}&password=${password}`,{ 'headers': headers });
   }
   /**
    * Solicita el token.
@@ -77,7 +83,8 @@ export class LoginService {
   token(): Observable<any> {
     return this.http.get(`${environment.apiToken}`);
   }
-  getUser(): Observable<any> {
-    return this.http.get(`${environment.apiGetUser}${sessionStorage.getItem('idUsuario')}`);
+  getUsuario(rutaApi:string): Observable<any> {
+    return this.http.get(`${rutaApi}${sessionStorage.getItem('idUsuario')}`);
   }
+  
 }

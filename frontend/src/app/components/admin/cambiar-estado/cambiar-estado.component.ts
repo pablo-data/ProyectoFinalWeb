@@ -17,7 +17,6 @@ export class CambiarEstadoComponent implements OnInit {
   public estados: string[] = ['Abierto', 'Cerrado', 'Desarrollo'];
   public formEstado: FormGroup = new FormGroup({});
   public ticketForm: TicketForm;
-  private ticket:Ticket;
   public nombreUsuario: string;
   public mensaje:string;
   constructor(private formBuilder: FormBuilder, private http: HttpClient,private router:Router,private reporte:SolicitudesReclamoService) {
@@ -27,7 +26,6 @@ export class CambiarEstadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ticket = JSON.parse(sessionStorage.getItem('ticket'));
     this.ticketForm=JSON.parse(sessionStorage.getItem('ticketForm'));
     this.getUsuario().subscribe((data) => {
       console.log(data);
@@ -38,7 +36,11 @@ export class CambiarEstadoComponent implements OnInit {
     });
   }
   send() {
-    this.reporte.patchEstadoTicket(this.ticket.idTicket, this.formEstado.get('estado').value)
+    this.reporte
+      .patchEstadoTicket(
+        this.ticketForm.idTicket,
+        this.formEstado.get('estado').value
+      )
       .subscribe((data) => {
         if (data.message != '') {
           this.mensaje = '';
