@@ -21,7 +21,7 @@ export class EnviarRespuestaComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.ticket=JSON.parse(sessionStorage.getItem('ticket'));
+    this.ticket=JSON.parse(sessionStorage.getItem('ticketForm'));
     this.getUsuario().subscribe(data=>{
       if(data.message!=''){
         this.nombreUsuario=data.message[0].nombres+' '+data.message[0].apellidos;
