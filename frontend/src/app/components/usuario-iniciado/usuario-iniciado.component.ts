@@ -71,6 +71,7 @@ export class UsuarioIniciadoComponent implements OnInit {
       } else {
         console.log(data.message);
         this.ticket.formulario_idFormulario=data.message;
+        this.ticket.estado="abierto";
         this.reclamo.ticketReclamo(this.ticket).subscribe(data=>{
           console.log('Envio realizado');
           this.mensaje = 'Envio realizado con exito';
