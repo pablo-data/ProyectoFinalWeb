@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/interfaces/Usuario';
 import { UsuariosRegistradosService } from 'src/app/servicios/usuarios-registrados.service';
@@ -13,7 +14,7 @@ export class ReporteUsuariosComponent implements OnInit {
   private fRegion: string = '';
   public contadorTabla: number = 1;
   public usuarios: Usuario[] = [];
-  constructor(private usuariosReg: UsuariosRegistradosService) {}
+  constructor(private usuariosReg: UsuariosRegistradosService,private router:Router) {}
   ngOnInit(): void {
     this.usuarios = this.usuariosReg.usuariosRegistrados;
     console.log(this.usuarios);
