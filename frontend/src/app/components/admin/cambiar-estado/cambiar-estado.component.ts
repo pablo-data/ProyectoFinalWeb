@@ -1,3 +1,4 @@
+import { SolicitudesReclamoService } from './../../../servicios/solicitudes-reclamo.service';
 import { Ticket } from './../../../../../../backend/src/app/models/ticket.model';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -19,7 +20,7 @@ export class CambiarEstadoComponent implements OnInit {
   private ticket:Ticket;
   public nombreUsuario: string;
   public mensaje:string;
-  constructor(private formBuilder: FormBuilder, private http: HttpClient,private router:Router) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient,private router:Router,private reporte:SolicitudesReclamoService) {
     this.formEstado = this.formBuilder.group({
       estado: ['', [Validators.required]],
     });
@@ -37,21 +38,17 @@ export class CambiarEstadoComponent implements OnInit {
     });
   }
   send() {
-    this.patchTicket(this.ticket.idTicket,this.formEstado.get("estado").value).subscribe(data=>{
-      if(data.message!=''){
-        this.mensaje='';
-        console.log(data);
-        this.router.navigate(['/adminHome/reporteSolicitudes']);
-      }else{
-        this.mensaje="Ha ocurrido un error inesperado, intente nuevamente más tarde";
-      }
-    });
-  }
-  patchTicket(idTicket: number,estado:string): Observable<any> {
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
-    headers=headers.append('Access-Control-Allow-Origin', '*');
-    return this.http.patch(`${environment.apiTicket}${idTicket}`,{'estado': estado} ,{ 'headers': headers });
+    this.reporte.patchEstadoTicket(this.ticket.idTicket, this.formEstado.get('estado').value)
+      .subscribe((data) => {
+        if (data.message != '') {
+          this.mensaje = '';
+          console.log(data);
+          this.router.navigate(['/adminHome/reporteSolicitudes']);
+        } else {
+          this.mensaje =
+            'Ha ocurrido un error inesperado, intente nuevamente más tarde';
+        }
+      });
   }
   getUsuario(): Observable<any> {
     return this.http.get(`${environment.apiGetUser}${this.ticketForm.usuario_idUsuario}`);

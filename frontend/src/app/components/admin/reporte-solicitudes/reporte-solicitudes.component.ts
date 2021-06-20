@@ -1,7 +1,8 @@
 import { SolicitudesReclamoService } from './../../../servicios/solicitudes-reclamo.service';
-import { Ticket, TicketForm } from './../../../interfaces/Usuario';
+import { TicketForm } from './../../../interfaces/Usuario';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Ticket } from '../../../../../../backend/src/app/models/ticket.model';
 
 @Component({
   selector: 'app-reporte-solicitudes',
@@ -32,9 +33,8 @@ export class ReporteSolicitudesComponent implements OnInit {
   }
   irEditarEstado(ticket: TicketForm) {
     let id = ticket.idFormulario;
-    console.log(ticket);
     this.tickets.forEach((item) => {
-      if (item.formulario_idFormulario == id) {
+      if (item.formulario_idFormulario == id.toString()) {
         sessionStorage.setItem('ticket', JSON.stringify(item));
         this.router.navigate(['/cambiarEstado']);
       }
@@ -49,7 +49,7 @@ export class ReporteSolicitudesComponent implements OnInit {
     let id=ticket.idFormulario;
     console.log(ticket);
     this.tickets.forEach(item=>{
-      if (item.formulario_idFormulario == id) {
+      if (item.formulario_idFormulario == id.toString()) {
         sessionStorage.setItem('ticket', JSON.stringify(item));
         this.router.navigate(['/enviarRespuesta']);
       }

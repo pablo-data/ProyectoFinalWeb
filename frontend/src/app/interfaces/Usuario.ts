@@ -1,6 +1,5 @@
 /**
  * Corresponde al ticket que visualiza el administrador
- * 
  */
 export interface TicketForm {
   prioridad_idPrioridad: number;
@@ -27,6 +26,7 @@ export interface FormReclamo {
  * el formulario.
  */
 export interface Ticket {
+  idTicket?:number;
   respuesta: string;
   estado: string;
   formulario_idFormulario: number;

@@ -2,12 +2,12 @@
     <form [formGroup]="formRespuesta" (submit)="send()" class="panel-margin">
         <p>USUARIO:{{nombreUsuario}}</p>
         <br>
-        <p>ASUNTO:{{ ticket.asunto}}</p>
+        <p>ASUNTO:{{ ticketForm.asunto}}</p>
         <br>
         <label>DESCRIPCION:</label>
         <br>
         <textarea cols="30" rows="10" readonly>
-        {{ticket.descripcion}}
+        {{ticketForm.descripcion}}
         </textarea>
         <br>
         <label for="" class="d-block">Respuesta</label>

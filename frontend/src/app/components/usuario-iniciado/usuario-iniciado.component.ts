@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { ReclamoService } from './../../servicios/reclamo.service';
 import { LoginService } from 'src/app/servicios/login.service';
 import { Component, OnInit } from '@angular/core';

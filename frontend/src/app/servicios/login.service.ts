@@ -1,12 +1,13 @@
 import { environment } from './../../environments/environment';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
+  @Output() headerTrigger:EventEmitter<any>=new EventEmitter();
   constructor(private http: HttpClient) {}
   /**
    * Loguea al usuario segun su rol
@@ -18,7 +19,9 @@ export class LoginService {
     sessionStorage.setItem('enSesion', 'true');
     sessionStorage.setItem('idUsuario', id.toString());
     this.getUser().subscribe(data=>{
-      sessionStorage.setItem('nombreUsuario', data.message.nombres+' '+data.message.apellidos);
+      console.log(data.message[0].nombres + ' ' + data.message[0].apellidos);
+      sessionStorage.setItem('nombreUsuario', data.message[0].nombres+' '+data.message[0].apellidos);
+      this.headerTrigger.emit(data.message[0].nombres + ' ' + data.message[0].apellidos);
     });
   }
   getNombreUsuario(): string {
