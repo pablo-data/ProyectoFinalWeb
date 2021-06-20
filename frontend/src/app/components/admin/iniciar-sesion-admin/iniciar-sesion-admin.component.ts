@@ -9,7 +9,6 @@ import { LoginService } from 'src/app/servicios/login.service';
   styleUrls: ['./iniciar-sesion-admin.component.scss'],
 })
 export class IniciarSesionAdminComponent implements OnInit {
-  @Input() data: any;
   public formLogin: FormGroup = new FormGroup({});
   public siteKey: string = '';
   public llenadoCompleto: boolean = false;
@@ -42,9 +41,8 @@ export class IniciarSesionAdminComponent implements OnInit {
             console.log('Login no existe');
             this.mensaje="Usuario no encontrado";
           } else {
-            this.data = data;
             this.mensaje ='';
-            this.login.setLogueoStatus('true', data.message[0].idUsuario);
+            this.login.setLogueoStatus('true', data.message[0].idAdmin);
             this.router.navigate(['/adminHome']);
           }
         });
