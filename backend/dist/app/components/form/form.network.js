@@ -37,6 +37,17 @@ router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         respuesta_module_1.default.error(req, res, 'información invalida', 500);
     }
 }));
+router.get('/user/:user', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = req.params.user;
+    try {
+        const result = yield form_controller_1.default.getFormPerUser(user);
+        respuesta_module_1.default.logrado(req, res, result[0]);
+    }
+    catch (error) {
+        console.log(error);
+        respuesta_module_1.default.error(req, res, 'información invalida', 500);
+    }
+}));
 router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const form = req.body;
     try {

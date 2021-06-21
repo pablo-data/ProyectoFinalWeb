@@ -10,6 +10,10 @@ function getForm(id: string): Promise<any[]>{
     return repository.getForm(id);
 }
 
+function getFormPerUser(user: string): Promise<any[]>{
+    return repository.getFormPerUser(user);
+}
+
 function postForm(form: Form): Promise<any[]>{
     form.asunto = form.asunto.toLowerCase(); 
     form.categoria = form.categoria.toLowerCase(); 
@@ -37,4 +41,4 @@ function deleteForm(id: string): Promise<any[]>{
 
 
 
-export default { getForms, getForm, postForm, patchForm, deleteForm }
+export default { getForms, getForm, postForm, patchForm, deleteForm, getFormPerUser }

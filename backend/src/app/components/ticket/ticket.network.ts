@@ -31,6 +31,20 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 });
 
+router.get('/form/:form', async (req: Request, res: Response) => {
+    const form: string = req.params.form;
+   
+    try{
+        const result: Ticket[] = await controller.getTicketPerForm(form);
+        respuesta.logrado(req, res, result[0]);
+    }
+    catch(error){
+        console.log(error);
+        respuesta.error(req, res, 'información invalida', 500);
+    }
+});
+
+
 router.post('/', async (req: Request, res: Response) => {
     const ticket: Ticket = req.body;
    

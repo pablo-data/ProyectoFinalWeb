@@ -10,6 +10,9 @@ function getTickets() {
 function getTicket(id) {
     return ticket_repository_1.default.getTicket(id);
 }
+function getTicketPerForm(form) {
+    return ticket_repository_1.default.getTicketPerForm(form);
+}
 function postTicket(ticket) {
     if (ticket.respuesta) {
         ticket.respuesta = ticket.respuesta.toLowerCase();
@@ -35,4 +38,4 @@ function patchTicket(id, ticket) {
 function deleteTicket(id) {
     return ticket_repository_1.default.deleteTicket(id);
 }
-exports.default = { getTickets, getTicket, postTicket, patchTicket, deleteTicket };
+exports.default = { getTickets, getTicket, postTicket, patchTicket, deleteTicket, getTicketPerForm };
