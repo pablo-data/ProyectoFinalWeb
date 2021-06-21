@@ -28,7 +28,6 @@ export class CambiarEstadoComponent implements OnInit {
   ngOnInit(): void {
     this.ticketForm=JSON.parse(sessionStorage.getItem('ticketForm'));
     this.getUsuario().subscribe((data) => {
-      console.log(data);
       if (data.message != '') {
         this.nombreUsuario =
           data.message[0].nombres + ' ' + data.message[0].apellidos;
@@ -36,16 +35,14 @@ export class CambiarEstadoComponent implements OnInit {
     });
   }
   send() {
-    console.log(this.formEstado.get('estado').value);
     this.reporte
       .patchEstadoTicket(
-        this.ticketForm.idTicket,
+        this.ticketForm.idFormulario,
         this.formEstado.get('estado').value
       )
       .subscribe((data) => {
         if (data.message != '') {
           this.mensaje = '';
-          console.log(data);
           this.router.navigate(['/adminHome/reporteSolicitudes']);
         } else {
           this.mensaje =

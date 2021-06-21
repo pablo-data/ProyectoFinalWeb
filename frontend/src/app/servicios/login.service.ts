@@ -84,7 +84,7 @@ export class LoginService {
   token(): Observable<any> {
     return this.http.get(`${environment.apiToken}`);
   }
-  getUsuario(rutaApi:string): Observable<any> {
+  private getUsuario(rutaApi:string): Observable<any> {
     return this.http.get(`${rutaApi}${sessionStorage.getItem('idUsuario')}`);
   }
 }

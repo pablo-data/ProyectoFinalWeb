@@ -12,6 +12,9 @@ export class SolicitudesReclamoService {
   getFormByUser():Observable<any>{
     return this.http.get(`${environment.apiGetFormByUser}${this.login.getIdUsuario()}`)
   }
+  getFormByUserAdmin(idUser:number):Observable<any>{
+    return this.http.get(`${environment.apiGetFormByUser}${idUser}`)
+  }
   getTicketByForm(idForm:number):Observable<any>{
     return this.http.get(`${environment.apiGetTicketByForm}${idForm}`);
   }
