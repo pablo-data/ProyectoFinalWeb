@@ -16,7 +16,6 @@ import { SolicitudesReclamoService } from 'src/app/servicios/solicitudes-reclamo
 export class EnviarRespuestaComponent implements OnInit {
   public formRespuesta: FormGroup = new FormGroup({});
   public ticketForm:TicketForm;
-  private ticket:Ticket;
   public mensaje:string;
   public nombreUsuario:string;
   constructor(private formBuilder: FormBuilder,private http:HttpClient,private router:Router,private reporte:SolicitudesReclamoService ) {
@@ -25,7 +24,6 @@ export class EnviarRespuestaComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.ticket = JSON.parse(sessionStorage.getItem('ticket'));
     this.ticketForm = JSON.parse(sessionStorage.getItem('ticketForm'));
     this.getUsuario().subscribe(data=>{
       if(data.message!=''){
@@ -36,7 +34,7 @@ export class EnviarRespuestaComponent implements OnInit {
 
   send() {
 
-    this.reporte.patchRespuestaTicket(this.ticket.idTicket, this.formRespuesta.get('respuesta').value)
+    this.reporte.patchRespuestaTicket(this.ticketForm.idFormulario, this.formRespuesta.get('respuesta').value)
       .subscribe((data) => {
         if (data.message != '') {
           this.mensaje = '';
