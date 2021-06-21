@@ -27,6 +27,13 @@ function getTicket(id) {
         return data;
     });
 }
+function getTicketPerForm(form) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const conn = yield database_module_1.default.connect();
+        const data = conn.query('SELECT * FROM ticket WHERE formulario_idFormulario = ?', [form]);
+        return data;
+    });
+}
 function postTicket(ticket) {
     return __awaiter(this, void 0, void 0, function* () {
         const conn = yield database_module_1.default.connect();
@@ -48,4 +55,4 @@ function deleteTicket(id) {
         return data;
     });
 }
-exports.default = { getTickets, getTicket, postTicket, patchTicket, deleteTicket };
+exports.default = { getTickets, getTicket, postTicket, patchTicket, deleteTicket, getTicketPerForm };

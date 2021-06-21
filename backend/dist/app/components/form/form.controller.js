@@ -10,6 +10,9 @@ function getForms() {
 function getForm(id) {
     return form_repository_1.default.getForm(id);
 }
+function getFormPerUser(user) {
+    return form_repository_1.default.getFormPerUser(user);
+}
 function postForm(form) {
     form.asunto = form.asunto.toLowerCase();
     form.categoria = form.categoria.toLowerCase();
@@ -34,4 +37,4 @@ function patchForm(id, form) {
 function deleteForm(id) {
     return form_repository_1.default.deleteForm(id);
 }
-exports.default = { getForms, getForm, postForm, patchForm, deleteForm };
+exports.default = { getForms, getForm, postForm, patchForm, deleteForm, getFormPerUser };

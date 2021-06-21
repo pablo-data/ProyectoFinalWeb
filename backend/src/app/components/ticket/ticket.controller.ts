@@ -10,6 +10,10 @@ function getTicket(id: string): Promise<any[]>{
     return repository.getTicket(id);
 }
 
+function getTicketPerForm(form: string): Promise<any[]>{
+    return repository.getTicketPerForm(form);
+}
+
 function postTicket(ticket: Ticket): Promise<any[]>{
     if(ticket.respuesta){
         ticket.respuesta = ticket.respuesta.toLowerCase(); 
@@ -37,4 +41,4 @@ function deleteTicket(id: string): Promise<any[]>{
 
 
 
-export default { getTickets, getTicket, postTicket, patchTicket, deleteTicket }
+export default { getTickets, getTicket, postTicket, patchTicket, deleteTicket, getTicketPerForm }

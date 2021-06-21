@@ -31,6 +31,20 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 });
 
+router.get('/user/:user', async (req: Request, res: Response) => {
+    const user: string = req.params.user;
+   
+    try{
+        const result: Form[] = await controller.getFormPerUser(user);
+        respuesta.logrado(req, res, result[0]);
+    }
+    catch(error){
+        console.log(error);
+        respuesta.error(req, res, 'información invalida', 500);
+    }
+});
+
+
 router.post('/', async (req: Request, res: Response) => {
     const form: Form = req.body;
    

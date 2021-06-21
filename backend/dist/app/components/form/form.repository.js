@@ -27,6 +27,13 @@ function getForm(id) {
         return data;
     });
 }
+function getFormPerUser(user) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const conn = yield database_module_1.default.connect();
+        const data = conn.query('SELECT * FROM formulario WHERE usuario_idUsuario = ?', [user]);
+        return data;
+    });
+}
 function postForm(form) {
     return __awaiter(this, void 0, void 0, function* () {
         const conn = yield database_module_1.default.connect();
@@ -48,4 +55,4 @@ function deleteForm(id) {
         return data;
     });
 }
-exports.default = { getForms, getForm, postForm, patchForm, deleteForm };
+exports.default = { getForms, getForm, postForm, patchForm, deleteForm, getFormPerUser };

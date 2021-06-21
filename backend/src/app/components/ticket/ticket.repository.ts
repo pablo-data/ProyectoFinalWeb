@@ -14,6 +14,12 @@ async function getTicket(id: string): Promise<any[]>{
     return data;
 }
 
+async function getTicketPerForm(form: string): Promise<any[]>{
+    const conn = await database.connect();
+    const data =  conn.query('SELECT * FROM ticket WHERE formulario_idFormulario = ?', [form]);
+    return data;
+}
+
 async function postTicket(ticket: Ticket): Promise<any[]> {
     const conn = await database.connect();
     const data =  conn.query('INSERT INTO ticket SET ?', [ticket]);
@@ -33,4 +39,4 @@ async function deleteTicket(id: string): Promise<any[]>{
 }
 
 
-export default { getTickets, getTicket, postTicket, patchTicket, deleteTicket };
+export default { getTickets, getTicket, postTicket, patchTicket, deleteTicket, getTicketPerForm };

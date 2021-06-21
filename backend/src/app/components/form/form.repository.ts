@@ -14,6 +14,12 @@ async function getForm(id: string): Promise<any[]>{
     return data;
 }
 
+async function getFormPerUser(user: string): Promise<any[]>{
+    const conn = await database.connect();
+    const data =  conn.query('SELECT * FROM formulario WHERE usuario_idUsuario = ?', [user]);
+    return data;
+}
+
 async function postForm(form: Form): Promise<any[]> {
     const conn = await database.connect();
     const data =  conn.query('INSERT INTO formulario SET ?', [form]);
@@ -33,4 +39,4 @@ async function deleteForm(id: string): Promise<any[]>{
 }
 
 
-export default { getForms, getForm, postForm, patchForm, deleteForm };
+export default { getForms, getForm, postForm, patchForm, deleteForm, getFormPerUser };
