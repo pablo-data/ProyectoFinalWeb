@@ -1,3 +1,4 @@
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -86,5 +87,4 @@ export class LoginService {
   getUsuario(rutaApi:string): Observable<any> {
     return this.http.get(`${rutaApi}${sessionStorage.getItem('idUsuario')}`);
   }
-  
 }

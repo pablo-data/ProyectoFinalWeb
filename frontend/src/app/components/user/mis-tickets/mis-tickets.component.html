@@ -1,0 +1,24 @@
+<section class="container">
+    <div class="d-flex contenido">
+        <div *ngFor="let item of ticketForms">
+            <mat-card class="box"
+                [ngClass]="{'prioridad-alta':item.prioridad_idPrioridad==1,'prioridad-media':item.prioridad_idPrioridad==2,'prioridad-baja':item.prioridad_idPrioridad==3}">
+                <mat-card-title>
+                    {{"Asunto: "+item.asunto}}
+                </mat-card-title>
+                <mat-card-subtitle>
+                    {{"Categoria: "+item.categoria}}
+                </mat-card-subtitle>
+                <mat-card-subtitle>
+                    {{"Descripción: "+item.descripcion}}
+                </mat-card-subtitle>
+                <mat-card-subtitle>
+                    {{"Respuesta: "+item.respuesta}}
+                </mat-card-subtitle>
+                <mat-card-subtitle>
+                    {{"Estado: "+item.estado}}
+                </mat-card-subtitle>
+            </mat-card>
+        </div>
+    </div>
+</section>

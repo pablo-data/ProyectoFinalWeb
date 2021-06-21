@@ -8,11 +8,10 @@ import { Usuario } from '../interfaces/Usuario';
   providedIn: 'root'
 })
 export class RegistroService {
-  
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient ) { }
   registrar(usuario:Usuario):Observable<any>{
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
-    return this.http.post(`${environment.apiPostUser}`,JSON.stringify(usuario),{'headers':headers});
+      let headers = new HttpHeaders();
+      headers = headers.append('Content-Type', 'application/json');
+      return this.http.post(`${environment.apiPostUser}`,JSON.stringify(usuario),{ 'headers': headers });
   }
 }

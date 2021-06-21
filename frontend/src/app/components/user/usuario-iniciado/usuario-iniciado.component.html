@@ -1,0 +1,13 @@
+<main class="container">
+    <section class="panel-margin">
+        <div class="d-flex justify-content-center contenido">
+            <mat-button-toggle-group>
+                <mat-button-toggle value="bold" (click)="irReclamo()" >Solicitud reclamo</mat-button-toggle>
+                <mat-button-toggle value="italic" (click)="irTickets()">Mis tickets</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </section>
+    <section class="container">
+        <router-outlet></router-outlet>
+    </section>
+</main>

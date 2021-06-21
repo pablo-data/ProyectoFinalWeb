@@ -2,38 +2,47 @@ $main-color-dark:#204051;
 $main-color:#3B6978;
 $main-color-light:#84A9AC;
 
-.contenido{
+.contenido {
   margin: auto;
   width: max-content;
 }
-.container{
+
+.container {
   padding: 10px;
 }
-.contenido-ml{
+
+.contenido-ml {
   margin-left: 20px;
 }
-.contenido-mr{
+
+.contenido-mr {
   margin-right: 20px;
 }
-.input{
-    width:350px;
+
+.input {
+  width: 350px;
 }
-@media(max-width: 1000px){
-  .input{
+
+@media(max-width: 1000px) {
+  .input {
     width: 260px;
   }
 }
-@media(max-width:768px){
-  .input{
+
+@media(max-width:768px) {
+  .input {
     width: 100%;
   }
-  .panel-contenido div{
+
+  .panel-contenido div {
     flex-direction: column;
   }
+
   .panel-filas div {
     height: 110px;
   }
-  .contenido div{
+
+  .contenido div {
     flex-direction: column;
     margin: auto;
   }

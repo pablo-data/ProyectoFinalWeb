@@ -36,6 +36,7 @@ export class CambiarEstadoComponent implements OnInit {
     });
   }
   send() {
+    console.log(this.formEstado.get('estado').value);
     this.reporte
       .patchEstadoTicket(
         this.ticketForm.idTicket,
