@@ -1,4 +1,4 @@
-import { IniciarSesionUsuarioComponent } from './components/sesion/sesion.component';
+import { IniciarSesionUsuarioComponent } from './components/user/sesion/sesion.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,18 +14,20 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import { RegistroComponent } from './components/registro/registro.component';
-import { UsuarioIniciadoComponent } from './components/usuario-iniciado/usuario-iniciado.component';
+import { UsuarioIniciadoComponent } from './components/user/usuario-iniciado/usuario-iniciado.component';
 import { CambiarEstadoComponent } from './components/admin/cambiar-estado/cambiar-estado.component';
 import { EnviarRespuestaComponent } from './components/admin/enviar-respuesta/enviar-respuesta.component';
 import { ReporteUsuariosComponent } from './components/admin/reporte-usuarios/reporte-usuarios.component';
 import { ReporteSolicitudesComponent } from './components/admin/reporte-solicitudes/reporte-solicitudes.component';
-import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { IniciarSesionAdminComponent } from './components/admin/iniciar-sesion-admin/iniciar-sesion-admin.component';
 import { RecuperarPassComponent } from './components/recuperar-pass/recuperar-pass.component';
+import { MatCardModule } from '@angular/material/card';
+import { SolicitudReclamoComponent } from './components/user/solicitud-reclamo/solicitud-reclamo.component';
+import { MisTicketsComponent } from './components/user/mis-tickets/mis-tickets.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +42,8 @@ import { RecuperarPassComponent } from './components/recuperar-pass/recuperar-pa
     HeaderComponent,
     IniciarSesionAdminComponent,
     RecuperarPassComponent,
+    SolicitudReclamoComponent,
+    MisTicketsComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,7 @@ import { RecuperarPassComponent } from './components/recuperar-pass/recuperar-pa
     FormsModule,
     HttpClientModule,
     MatSidenavModule,
-    MatToolbarModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

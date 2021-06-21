@@ -1,3 +1,4 @@
+import { LoginService } from 'src/app/servicios/login.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -7,7 +8,16 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class SolicitudesReclamoService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private login:LoginService) {}
+  getFormByUser():Observable<any>{
+    return this.http.get(`${environment.apiGetFormByUser}${this.login.getIdUsuario()}`)
+  }
+  getFormByUserAdmin(idUser:number):Observable<any>{
+    return this.http.get(`${environment.apiGetFormByUser}${idUser}`)
+  }
+  getTicketByForm(idForm:number):Observable<any>{
+    return this.http.get(`${environment.apiGetTicketByForm}${idForm}`);
+  }
   getForms(): Observable<any> {
     return this.http.get(`${environment.apiGetForms}`);
   }

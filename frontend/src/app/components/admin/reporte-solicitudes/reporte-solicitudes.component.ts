@@ -1,5 +1,5 @@
-import { Ticket } from 'src/app/interfaces/Usuario';
-import { SolicitudesReclamoService } from './../../../servicios/solicitudes-reclamo.service';
+import { SolicitudesReclamoService } from 'src/app/servicios/solicitudes-reclamo.service';
+import { UsuariosRegistradosService } from 'src/app/servicios/usuarios-registrados.service';
 import { TicketForm } from './../../../interfaces/Usuario';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,41 +11,34 @@ import { Router } from '@angular/router';
 })
 export class ReporteSolicitudesComponent implements OnInit {
   public ticketForms: TicketForm[] = [];
-  public contAbierto: number=0;
-  public contCerrado: number=0;
-  public contDesarrollo: number=0;
-
   constructor(
     private router: Router,
-    private solicitudes: SolicitudesReclamoService
+    private usuarios: UsuariosRegistradosService,
+    private solicitudes:SolicitudesReclamoService
   ) {}
 
   ngOnInit(): void {
-    this.solicitudes.getTickets().subscribe((data) => {
-      if (data.message != '') {
-        this.ticketForms = data.message;
-        this.ticketForms.forEach((item) => {
-          this.solicitudes.getForm(item.idTicket).subscribe((data) => {
-            if (data.message != '') {
-              item.asunto = data.message[0].asunto;
-              item.descripcion = data.message[0].descripcion;
-              item.respuesta=data.message[0].respuesta;
-              console.log(item);
-            }
-          });
+    sessionStorage.removeItem('ticketForm');
+    this.usuarios.cargarUsuarios().subscribe(data=>{
+      data.message.forEach(item=>{
+        this.solicitudes.getFormByUserAdmin(item.idUsuario).subscribe(form=>{
+          if(form.message!=''){
+            this.ticketForms = form.message;
+            this.ticketForms.forEach(item=>{
+              this.solicitudes.getTicketByForm(item.idFormulario).subscribe(data=>{
+                //devuelve el ticket asociado a un form
+                item.respuesta = data.message[0].respuesta;
+                item.estado = data.message[0].estado;
+              });
+            });
+          }else{
+
+          }
         });
-      }
+      });
     });
   }
-  setAbiertos(){
-    this.contAbierto++;
-  }
-  setCerrados(){
-    this.contCerrado++;
-  }
-  setDesarrollos(){
-    this.contDesarrollo++;
-  }
+   
   /**
    * Redirige a la vista de enviar respuesta y toma el ticket seleccionado
    * como referencia para cargarlo en la nueva vista.
@@ -57,6 +50,7 @@ export class ReporteSolicitudesComponent implements OnInit {
       if (item.idFormulario == id) {
         sessionStorage.setItem('ticketForm', JSON.stringify(item));
         this.router.navigate(['/cambiarEstado']);
+        return;
       }
     });
   }
@@ -72,6 +66,7 @@ export class ReporteSolicitudesComponent implements OnInit {
       if (item.idFormulario == id) {
         sessionStorage.setItem('ticketForm', JSON.stringify(item));
         this.router.navigate(['/enviarRespuesta']);
+        return;
       }
     });
   }

@@ -1,19 +1,17 @@
-import { TicketForm, TicketUsuario } from './../../interfaces/Usuario';
-import { ReclamoService } from './../../servicios/reclamo.service';
-import { LoginService } from 'src/app/servicios/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FormReclamo, Ticket } from 'src/app/interfaces/Usuario';
+import { LoginService } from 'src/app/servicios/login.service';
+import { ReclamoService } from 'src/app/servicios/reclamo.service';
 
 @Component({
-  selector: 'app-usuario-iniciado',
-  templateUrl: './usuario-iniciado.component.html',
-  styleUrls: ['./usuario-iniciado.component.scss'],
+  selector: 'app-solicitud-reclamo',
+  templateUrl: './solicitud-reclamo.component.html',
+  styleUrls: ['./solicitud-reclamo.component.scss'],
 })
-export class UsuarioIniciadoComponent implements OnInit {
+export class SolicitudReclamoComponent implements OnInit {
   public formReclamo: FormGroup = new FormGroup({});
-  public verTickets:boolean=false;
-  public misTickets:Array<TicketUsuario>;
   public categorias: Array<string> = [
     'Solicitud generica',
     'Solicitud de cambio',
@@ -40,7 +38,7 @@ export class UsuarioIniciadoComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private login: LoginService,
-    private reclamo: ReclamoService
+    private reclamo: ReclamoService,
   ) {}
 
   ngOnInit(): void {
@@ -78,8 +76,14 @@ export class UsuarioIniciadoComponent implements OnInit {
         this.ticket.formulario_idFormulario = data.message;
         this.ticket.estado = 'abierto';
         this.reclamo.ticketReclamo(this.ticket).subscribe((data) => {
-          console.log('Envio realizado');
-          this.mensaje = 'Envio realizado con exito';
+          if (data.message != '') {
+            console.log('Envio realizado');
+            this.mensaje = 'Envio realizado con exito';
+          } else {
+            console.log('Ha ocurrido un error');
+            this.mensaje =
+              'Ha ocurrido un error inesperado, intente más tarde.';
+          }
         });
       }
     });

@@ -16,6 +16,8 @@ export const environment = {
   apiTicket: 'http://localhost:3800/api/ticket/',
   apiGetAdmin: 'http://localhost:3800/api/admin/',
   apiGetForm: 'http://localhost:3800/api/form/',
+  apiGetFormByUser: 'http://localhost:3800/api/form/user/',
+  apiGetTicketByForm: 'http://localhost:3800/api/ticket/form/',
 };
 
 /*

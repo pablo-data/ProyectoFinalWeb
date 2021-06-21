@@ -1,8 +1,8 @@
-import { UsuariosRegistradosService } from './../../servicios/usuarios-registrados.service';
+import { UsuariosRegistradosService } from '../../../servicios/usuarios-registrados.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/interfaces/Usuario';
-import { ReporteUsuariosComponent } from '../admin/reporte-usuarios/reporte-usuarios.component';
+import { ReporteUsuariosComponent } from '../reporte-usuarios/reporte-usuarios.component';
 
 @Component({
   selector: 'app-admin-home',

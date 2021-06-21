@@ -56,5 +56,6 @@ export interface Usuario {
   region: string;
   comuna: string;
   email: string;
-  contraseña:string;
+  contraseña: string;
+  idUsuario?:number;
 }
