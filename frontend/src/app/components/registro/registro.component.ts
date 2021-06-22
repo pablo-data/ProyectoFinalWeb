@@ -54,7 +54,8 @@ export class RegistroComponent implements OnInit {
       contraseña: this.formRegistro.get('password').value,
     };
     this.registro.registrar(usuario).subscribe(data=>{
-      if(data.message==''){
+      console.log(data);
+      if(data.error!=''){
         this.mensaje="Correo en uso, intente nuevamente"
       }else{
         this.router.navigate(['/']);

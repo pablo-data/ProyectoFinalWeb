@@ -1,5 +1,5 @@
 <main class="container">
-    <div class="contenido-centrado">
+    <div>
         <h1 style="color:#204051">SECCIÓN ADMINISTRACIÓN</h1>
     </div>
     <section>
@@ -11,9 +11,10 @@
                 <div><input type="password" id="password" formControlName="password" placeholder="CONTRASEÑA"
                         class="text-center input-sesion"></div>
                 <div>
-                    <mat-checkbox type="checkbox" id=" ">RECORDAR</mat-checkbox>
+                    <a href="" style="color: black;" [routerLink]="['/recuperacion']"
+                        routerLinkActive="router-link-active">RECUPERAR CONTRASEÑA</a>
                 </div>
-                <div class="text-center">
+                <div class="container">
                     <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
                 </div>
                 <div class="mensaje-error">

@@ -7,19 +7,14 @@ $main-color-light:#84A9AC;
   margin: auto;
 }
 
-@media(max-width:768px) {
-  .contenido-centrado {
-    width: 100%;
-  }
-}
-
 .input-sesion {
   background-color: $main-color;
   border: 0;
-  border-radius: 10px;
   width: 55%;
 }
 
-element.style {
-  width: 0;
+@media(max-width:400px) {
+  .contenido-centrado {
+    width: 100%;
+  }
 }

@@ -12,15 +12,6 @@ import { ReclamoService } from 'src/app/servicios/reclamo.service';
 })
 export class SolicitudReclamoComponent implements OnInit {
   public formReclamo: FormGroup = new FormGroup({});
-  public categorias: Array<string> = [
-    'Solicitud generica',
-    'Solicitud de cambio',
-    'Incidente',
-    'Problema',
-    'Solicitud de hardware',
-    'Solicitud de software nuevo',
-  ];
-  public prioridades: Array<string> = ['Alta', 'Media', 'Baja'];
   public mensaje: string;
   private form: FormReclamo = {
     asunto: '',

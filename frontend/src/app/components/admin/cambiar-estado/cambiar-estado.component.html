@@ -1,23 +1,26 @@
-<main class="container text-center">
+<main class="text-center container">
     <form [formGroup]="formEstado" (submit)="send()" class="panel-margin" >
         <p>USUARIO:{{nombreUsuario}}</p>
         <br>
         <p>ASUNTO:{{ticketForm.asunto}}</p>
         <br>
-        <label>DESCRIPCION:</label>
+        <div class="text-area-admin">
+            <label style="color: black;">
+                DESCRIPCIÓN:
+            </label>
+            <textarea class="form-control text-left" rows="4" readonly>
+                {{ticketForm.descripcion}}
+            </textarea>
+        </div> 
         <br>
-        <textarea cols="30" rows="10" readonly>
-        {{ticketForm.descripcion}}
-        </textarea>
-        <br>
-        <mat-form-field appearance="fill" class="input">
-            <mat-label>SELECCIONE NUEVO ESTADO</mat-label>
-            <mat-select formControlName="estado">
-                <mat-option *ngFor="let item of estados" [value]="item">
-                    {{item}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+        <p>SELECCIONE NUEVO ESTADO:</p>
+        <select formControlName="estado" style="max-width: 30%; margin: auto;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected disabled>{{"Actual: "+ticketForm.estado}}</option>
+            <option value="Abierto">Abierto</option>
+            <option value="Cerrado">Cerrado</option>
+            <option value="Desarrollo">Desarrollo</option>
+        </select>
+      
         <div>
             <button [disabled]="formEstado.invalid" mat-raised-button class="btn" type="submit">ENVIAR</button>
         </div>

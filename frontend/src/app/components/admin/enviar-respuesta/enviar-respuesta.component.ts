@@ -1,4 +1,3 @@
-import { Ticket } from './../../../../../../backend/src/app/models/ticket.model';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -31,9 +30,7 @@ export class EnviarRespuestaComponent implements OnInit {
       }
     });
   }
-
   send() {
-
     this.reporte.patchRespuestaTicket(this.ticketForm.idFormulario, this.formRespuesta.get('respuesta').value)
       .subscribe((data) => {
         if (data.message != '') {

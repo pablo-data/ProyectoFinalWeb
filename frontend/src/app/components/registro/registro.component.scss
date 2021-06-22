@@ -2,15 +2,13 @@ $main-color-dark:#204051;
 $main-color:#3B6978;
 $main-color-light:#84A9AC;
 
-.contenido {
-  margin: auto;
-  width: max-content;
-}
-
 .container {
   padding: 10px;
 }
-
+.contenido-centrado {
+  text-align: center;
+  margin: auto;
+}
 .contenido-ml {
   margin-left: 20px;
 }
@@ -20,30 +18,18 @@ $main-color-light:#84A9AC;
 }
 
 .input {
-  width: 350px;
+  max-width: 350px;
 }
 
-@media(max-width: 1000px) {
-  .input {
-    width: 260px;
-  }
-}
-
-@media(max-width:768px) {
-  .input {
-    width: 100%;
-  }
-
-  .panel-contenido div {
-    flex-direction: column;
-  }
-
-  .panel-filas div {
-    height: 110px;
-  }
-
+@media(max-width:500px){
   .contenido div {
     flex-direction: column;
     margin: auto;
   }
+   .panel-contenido div {
+     flex-direction: column;
+   }
+   .panel-bg{
+     min-width: 80%;
+   }
 }
