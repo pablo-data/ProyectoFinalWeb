@@ -140,3 +140,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 INSERT INTO prioridad (prioridad) VALUES ("alta");
 INSERT INTO prioridad (prioridad) VALUES ("media");
 INSERT INTO prioridad (prioridad) VALUES ("baja");
+-- -----------------------------------------------------
+-- Insert admin
+-- -----------------------------------------------------
+INSERT INTO admin (email, contraseña, nombres, apellidos) VALUES ("prueba@gmail.com", md5("hola123"), "Juan", "Pedro");
+
