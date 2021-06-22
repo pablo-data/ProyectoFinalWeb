@@ -5,8 +5,7 @@ async function connect(){
         host: 'localhost',
         user: 'root',
         database: 'bd_solicitudes',
-        password: 'hola123',
-        connectionLimit: 10
+        password: 'hola123'
     });
 
     return connection;
