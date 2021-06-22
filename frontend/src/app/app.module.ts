@@ -7,10 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatButtonModule } from '@angular/material/button';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import { RegistroComponent } from './components/registro/registro.component';
@@ -26,6 +24,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { IniciarSesionAdminComponent } from './components/admin/iniciar-sesion-admin/iniciar-sesion-admin.component';
 import { RecuperarPassComponent } from './components/recuperar-pass/recuperar-pass.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 import { SolicitudReclamoComponent } from './components/user/solicitud-reclamo/solicitud-reclamo.component';
 import { MisTicketsComponent } from './components/user/mis-tickets/mis-tickets.component';
 @NgModule({
@@ -57,11 +56,11 @@ import { MisTicketsComponent } from './components/user/mis-tickets/mis-tickets.c
     NgxCaptchaModule,
     MatSelectModule,
     MatButtonToggleModule,
-    MatTableModule,
     FormsModule,
     HttpClientModule,
     MatSidenavModule,
     MatCardModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

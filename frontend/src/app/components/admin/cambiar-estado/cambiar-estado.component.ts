@@ -18,15 +18,20 @@ export class CambiarEstadoComponent implements OnInit {
   public formEstado: FormGroup = new FormGroup({});
   public ticketForm: TicketForm;
   public nombreUsuario: string;
-  public mensaje:string;
-  constructor(private formBuilder: FormBuilder, private http: HttpClient,private router:Router,private reporte:SolicitudesReclamoService) {
+  public mensaje: string;
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private reporte: SolicitudesReclamoService
+  ) {
     this.formEstado = this.formBuilder.group({
       estado: ['', [Validators.required]],
     });
   }
 
   ngOnInit(): void {
-    this.ticketForm=JSON.parse(sessionStorage.getItem('ticketForm'));
+    this.ticketForm = JSON.parse(sessionStorage.getItem('ticketForm'));
     this.getUsuario().subscribe((data) => {
       if (data.message != '') {
         this.nombreUsuario =
@@ -51,6 +56,8 @@ export class CambiarEstadoComponent implements OnInit {
       });
   }
   getUsuario(): Observable<any> {
-    return this.http.get(`${environment.apiGetUser}${this.ticketForm.usuario_idUsuario}`);
+    return this.http.get(
+      `${environment.apiGetUser}${this.ticketForm.usuario_idUsuario}`
+    );
   }
 }

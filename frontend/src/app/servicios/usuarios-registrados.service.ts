@@ -8,7 +8,6 @@ import { Usuario } from '../interfaces/Usuario';
   providedIn: 'root',
 })
 export class UsuariosRegistradosService {
-  public usuariosRegistrados:Usuario[]=[];
   constructor(private http: HttpClient) {}
   cargarUsuarios(): Observable<any> {
     return this.http.get(`${environment.apiGetUsers}`);

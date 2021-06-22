@@ -12,14 +12,9 @@ import { ReporteUsuariosComponent } from '../reporte-usuarios/reporte-usuarios.c
 export class AdminHomeComponent implements OnInit {
   constructor(
     private router: Router,
-    private usuariosReg: UsuariosRegistradosService,
   ) {}
   
   ngOnInit(): void {
-    this.usuariosReg.cargarUsuarios().subscribe((data) => {
-      this.usuariosReg.usuariosRegistrados =data.message as Usuario[];
-    });
-
   }
   irReporteSolicitudes() {
     this.router.navigate(['adminHome/reporteSolicitudes']);

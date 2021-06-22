@@ -1,12 +1,15 @@
-.margin{
-    margin: 0 20px;
-}
- 
 @media(max-width:768px){
     .margin{
-        margin: 0;
+        margin: auto;
     }
     .nombre{
         display:none;
     }
+}
+.margin{
+    margin:0 20px;
+}
+#logout{
+    border: 0;
+    background: none;
 }
