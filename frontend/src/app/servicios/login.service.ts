@@ -1,4 +1,3 @@
-import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -41,7 +40,37 @@ export class LoginService {
     return sessionStorage.getItem('nombreUsuario');
   }
   /**
-   *
+   * Obtiene al usuario o administrador mediante su email, pensado 
+   * para la recuperación de contraseña.
+   * @param correo correo del usuario.
+   * @param token token.
+   * @returns 
+   */
+  getUserByMail(correo:string,token:string,esAdmin:boolean):Observable<any>{
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('access-token', token);
+    if(!esAdmin)return this.http.get(`${environment.apiForgotUser}${correo}`,{'headers':headers});
+    else return this.http.get(`${environment.apiForgotAdmin}${correo}`,{'headers':headers});
+  }
+  /**
+   * Establece la nueva contraseña del usuarioo administrador
+   * mediante la pregunta y respuesta secreta.
+   * @param id id del usuario.
+   * @param datos objeto compuesto por: contraseña, pregunta y respuesta secreta.
+   * @param token token.
+   * @returns 
+   */
+  patchNewPass(id:number,datos:{},token:string,esAdmin:boolean):Observable<any>{
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('access-token', token);
+    if(!esAdmin)return this.http.patch(`${environment.apiPatchNewPass}${id}`,JSON.stringify(datos),{'headers':headers});
+    else return this.http.patch(`${environment.apiPatchNewPassAdmin}${id}`,JSON.stringify(datos),{'headers':headers});
+  }
+  /**
+   * Entrega la id del usuario actual, con propositos de interacción
+   * con ciertas partes del sitio.
    * @returns devuelve la id del usuario o admin.
    */
   getIdUsuario(): number {
@@ -55,11 +84,7 @@ export class LoginService {
     if (sessionStorage.getItem('enSesion') != null) return true;
     else return false;
   }
-  validarLoginUser(
-    usuario: string,
-    password: string,
-    token: string
-  ): Observable<any> {
+  validarLoginUser(usuario: string,password: string,token: string): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append('access-token', token);

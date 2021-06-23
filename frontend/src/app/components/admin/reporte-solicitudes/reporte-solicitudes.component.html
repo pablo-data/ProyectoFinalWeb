@@ -4,6 +4,11 @@
             <div class="estado-box">
                 <p>Abierto</p>
             </div>
+            <div *ngIf="ticketForms.length==0">
+                <h2>
+                    No hay ningún ticket en el sistema
+                </h2>
+            </div>
             <div *ngFor="let item of ticketForms">
                 <div *ngIf="item.estado=='abierto'">
                     <mat-card class="box"

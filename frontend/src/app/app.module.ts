@@ -20,7 +20,6 @@ import { ReporteSolicitudesComponent } from './components/admin/reporte-solicitu
 import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { IniciarSesionAdminComponent } from './components/admin/iniciar-sesion-admin/iniciar-sesion-admin.component';
 import { RecuperarPassComponent } from './components/recuperar-pass/recuperar-pass.component';
 import { MatCardModule } from '@angular/material/card';
@@ -58,7 +57,6 @@ import { MisTicketsComponent } from './components/user/mis-tickets/mis-tickets.c
     MatButtonToggleModule,
     FormsModule,
     HttpClientModule,
-    MatSidenavModule,
     MatCardModule,
     MatButtonModule,
   ],

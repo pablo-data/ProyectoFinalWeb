@@ -38,7 +38,7 @@ export class ReporteSolicitudesComponent implements OnInit {
       });
     });
   }
-   
+  
   /**
    * Redirige a la vista de enviar respuesta y toma el ticket seleccionado
    * como referencia para cargarlo en la nueva vista.
@@ -61,7 +61,6 @@ export class ReporteSolicitudesComponent implements OnInit {
    */
   irEnviarRespuesta(ticket: TicketForm) {
     let id = ticket.idFormulario;
-
     this.ticketForms.forEach((item) => {
       if (item.idFormulario == id) {
         sessionStorage.setItem('ticketForm', JSON.stringify(item));

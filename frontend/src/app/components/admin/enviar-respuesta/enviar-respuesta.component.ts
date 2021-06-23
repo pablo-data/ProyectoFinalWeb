@@ -17,6 +17,7 @@ export class EnviarRespuestaComponent implements OnInit {
   public ticketForm:TicketForm;
   public mensaje:string;
   public nombreUsuario:string;
+  public respuestaActual:string;
   constructor(private formBuilder: FormBuilder,private http:HttpClient,private router:Router,private reporte:SolicitudesReclamoService ) {
     this.formRespuesta = this.formBuilder.group({
       respuesta: ['', [Validators.required]],
@@ -24,6 +25,7 @@ export class EnviarRespuestaComponent implements OnInit {
   }
   ngOnInit(): void {
     this.ticketForm = JSON.parse(sessionStorage.getItem('ticketForm'));
+    console.log(this.ticketForm);
     this.getUsuario().subscribe(data=>{
       if(data.message!=''){
         this.nombreUsuario=data.message[0].nombres+' '+data.message[0].apellidos;
@@ -41,6 +43,9 @@ export class EnviarRespuestaComponent implements OnInit {
             'Ha ocurrido un error inesperado, intente nuevamente más tarde';
         }
       });
+  }
+  setRespuesta(){
+    return this.ticketForm.respuesta;
   }
   getUsuario():Observable<any> {
     return this.http.get(`${environment.apiGetUser}${this.ticketForm.usuario_idUsuario}`);

@@ -28,6 +28,10 @@ export class IniciarSesionAdminComponent implements OnInit {
       recaptcha: ['', Validators.required],
     });
   }
+  recuperarPass(){
+    sessionStorage.setItem('recuperarAdmin','true');
+    this.router.navigate(['/recuperacion']);
+  }
   send() {
     this.login.token().subscribe((token) => {
       this.login

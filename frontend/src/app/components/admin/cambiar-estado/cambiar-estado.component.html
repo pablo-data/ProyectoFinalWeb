@@ -1,16 +1,14 @@
 <main class="text-center container">
     <form [formGroup]="formEstado" (submit)="send()" class="panel-margin" >
-        <p>USUARIO:{{nombreUsuario}}</p>
+        <h2>USUARIO: {{nombreUsuario}}</h2>
         <br>
-        <p>ASUNTO:{{ticketForm.asunto}}</p>
+        <h2>ASUNTO:{{ticketForm.asunto}}</h2>
         <br>
         <div class="text-area-admin">
             <label style="color: black;">
                 DESCRIPCIÓN:
             </label>
-            <textarea class="form-control text-left" rows="4" readonly>
-                {{ticketForm.descripcion}}
-            </textarea>
+            <textarea class="form-control" rows="4" readonly>{{ticketForm.descripcion}}</textarea>
         </div> 
         <br>
         <p>SELECCIONE NUEVO ESTADO:</p>

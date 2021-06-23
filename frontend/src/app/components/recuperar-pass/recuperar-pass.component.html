@@ -4,13 +4,41 @@
     </div>
     <section>
         <div class="panel-bg contenido-centrado text-center">
-            <form [formGroup]="formRecuperar" (ngSubmit)="send()" class="panel-margin" action="https://formsubmit.co/your@email.com" method="POST">
-                <div><input type="password" id="password" formControlName="password" placeholder="NUEVA CONTRASEÑA"
-                        class="text-center input-sesion"></div>
-                <div><input type="password" id="password2" formControlName="password2" placeholder="CONFIRME NUEVA CONTRASEÑA"
-                        class="text-center input-sesion"></div>
+            <form [formGroup]="formRecuperar" (ngSubmit)="send()" class="panel-margin d-flex flex-column">
                 <div>
-                    <button [disabled]="formRecuperar.invalid" mat-raised-button class="btn" type="submit">ENVIAR</button>
+                    <label>EMAIL</label>
+                    <input type="email" id="email" formControlName="email" placeholder="INGRESE SU CORREO"
+                        class="text-center input-sesion form-control">
+                </div>
+                <div>
+                    <label>SELECCIONE SU PREGUNTA</label>
+                    <select formControlName="secretQ" style="margin: auto;" class="form-select form-select-lg mb-3"
+                        aria-label=".form-select-lg example">
+                        <option selected></option>
+                        <option value="comida favorita">Comida favorita</option>
+                        <option value="nombre de tu primer mascota">Nombre de tu primer mascota</option>
+                        <option value="juego favorito">Juego favorito</option>
+                        <option value="musica favorita">Musica favorita</option>
+                    </select>
+                </div>
+                <div>
+                    <label>RESPUESTA SECRETA</label>
+                    <input class="form-control text-center input-sesion" type="text" formControlName="secretA"
+                        placeholder="INSERTE RESPUESTA"></div>
+                <div>
+                    <label>NUEVA CONTRASEÑA</label>
+                    <input type="password" id="password" formControlName="password" placeholder="INGRESE NUEVA CONTRASEÑA"
+                        class="text-center  form-control"></div>
+                <div>
+                    <label>CONFIRMAR CONTRASEÑA</label>
+                    <input type="password" id="password2" formControlName="password2" placeholder="CONFIRME CONTRASEÑA"
+                        class="text-center form-control"></div>
+                <div class="mensaje-error">
+                    {{mensaje}}
+                </div>
+                <div>
+                    <button [disabled]="formRecuperar.invalid" mat-raised-button class="btn"
+                        type="submit">ENVIAR</button>
                 </div>
             </form>
         </div>

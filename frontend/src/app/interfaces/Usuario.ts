@@ -58,4 +58,6 @@ export interface Usuario {
   email: string;
   contraseña: string;
   idUsuario?:number;
+  pregunta?:string;
+  respuesta?:string
 }
