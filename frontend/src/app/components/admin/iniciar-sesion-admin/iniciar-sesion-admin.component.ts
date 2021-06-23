@@ -22,6 +22,7 @@ export class IniciarSesionAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    sessionStorage.removeItem('recuperarAdmin');
     this.formLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
