@@ -32,12 +32,6 @@ async function postUser(user: User): Promise<any[]> {
     return data;
 }
 
-async function patchUser(id: string, user: User): Promise<any[]> {
-    const conn = await database.connect();
-    const data =  conn.query('UPDATE usuario SET ? WHERE idUsuario = ?', [user, id]);
-    return data;
-}
-
 async function deleteUser(id: string): Promise<any[]>{
     const conn = await database.connect();
     const data =  conn.query('DELETE FROM usuario WHERE idUsuario = ?', [id]);
@@ -45,4 +39,4 @@ async function deleteUser(id: string): Promise<any[]>{
 }
 
 
-export default { getUsers, getUser, postUser, patchUser, deleteUser, getUserEmail, getUserRut };
+export default { getUsers, getUser, postUser, deleteUser, getUserEmail, getUserRut };

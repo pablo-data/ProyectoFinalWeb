@@ -48,13 +48,6 @@ function postUser(user) {
         return data;
     });
 }
-function patchUser(id, user) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const conn = yield database_module_1.default.connect();
-        const data = conn.query('UPDATE usuario SET ? WHERE idUsuario = ?', [user, id]);
-        return data;
-    });
-}
 function deleteUser(id) {
     return __awaiter(this, void 0, void 0, function* () {
         const conn = yield database_module_1.default.connect();
@@ -62,4 +55,4 @@ function deleteUser(id) {
         return data;
     });
 }
-exports.default = { getUsers, getUser, postUser, patchUser, deleteUser, getUserEmail, getUserRut };
+exports.default = { getUsers, getUser, postUser, deleteUser, getUserEmail, getUserRut };

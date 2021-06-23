@@ -27,37 +27,14 @@ async function postUser(user: User): Promise<any[]>{
         user.region = user.region.toLowerCase(); 
         user.comuna = user.comuna.toLowerCase(); 
 
-        //encriptar contraseña
+        //encriptar contraseña, pregunta, respuesta
         user.contraseña = md5(user.contraseña);
+        user.pregunta = md5(user.pregunta);
+        user.respuesta = md5(user.respuesta);
         return repository.postUser(user);
     }else{
         return Promise.reject('El usuario ya existe');
     }
-}
-
-function patchUser(id: string, user: User): Promise<any[]>{
-    if(user.email){
-        user.email = user.email.toLowerCase(); 
-    };
-    if(user.nombres){
-        user.nombres = user.nombres.toLowerCase(); 
-    };
-    if(user.apellidos){
-        user.apellidos = user.apellidos.toLowerCase(); 
-    };
-    if(user.direccion){
-        user.direccion = user.direccion.toLowerCase();
-    };
-    if( user.region){
-        user.region = user.region.toLowerCase(); 
-    };
-    if(user.comuna){
-        user.comuna = user.comuna.toLowerCase(); 
-    };
-    if(user.contraseña){
-        user.contraseña = md5(user.contraseña);
-    }
-    return repository.patchUser(id, user);
 }
 
 function deleteUser(id: string): Promise<any[]>{
@@ -67,4 +44,4 @@ function deleteUser(id: string): Promise<any[]>{
 
 
 
-export default { getUsers, getUser, postUser, patchUser, deleteUser }
+export default { getUsers, getUser, postUser, deleteUser }

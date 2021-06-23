@@ -27,4 +27,32 @@ function adminLogin(email, password) {
         return data;
     });
 }
-exports.default = { userLogin, adminLogin };
+function adminForgotPassword(email) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const conn = yield database_module_1.default.connect();
+        const data = conn.query('SELECT idAdmin, email FROM admin WHERE email=?', [email]);
+        return data;
+    });
+}
+function userForgotPassword(email) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const conn = yield database_module_1.default.connect();
+        const data = conn.query('SELECT idUsuario, email FROM usuario WHERE email=?', [email]);
+        return data;
+    });
+}
+function patchAdmin(id, admin) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const conn = yield database_module_1.default.connect();
+        const data = conn.query('UPDATE admin SET contraseña=? WHERE idAdmin = ? and pregunta=md5(?) and respuesta=md5(?)', [admin.contraseña, id, admin.pregunta, admin.respuesta]);
+        return data;
+    });
+}
+function patchUser(id, user) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const conn = yield database_module_1.default.connect();
+        const data = conn.query('UPDATE usuario SET contraseña=? WHERE idUsuario = ? and pregunta=md5(?) and respuesta=md5(?)', [user.contraseña, id, user.pregunta, user.respuesta]);
+        return data;
+    });
+}
+exports.default = { userLogin, adminLogin, adminForgotPassword, userForgotPassword, patchAdmin, patchUser };

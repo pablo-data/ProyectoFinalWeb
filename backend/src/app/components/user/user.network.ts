@@ -44,20 +44,6 @@ router.post('/', async (req: Request, res: Response) => {
     }
 });
 
-router.patch('/:id', async (req: Request, res: Response) => {
-    const user: User = req.body;
-    const id: string = req.params['id'];
-    try{
-        const result: any = await controller.patchUser(id, user);
-        respuesta.logrado(req, res, 'Se actualizó un usuario correctamente', 200);
-    }
-    catch(error){
-        console.log(error);
-        respuesta.error(req, res, 'información invalida', 500);
-    }
-});
-
-
 router.delete('/:id', async (req: Request, res: Response) => {
     const id: string = req.params['id'];
    
