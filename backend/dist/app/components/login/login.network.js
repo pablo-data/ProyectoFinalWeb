@@ -55,6 +55,52 @@ router.get('/admin', securityRoute, (req, res) => __awaiter(void 0, void 0, void
         respuesta_module_1.default.error(req, res, 'información invalida', 500);
     }
 }));
+router.get('/admin/forgot-password', securityRoute, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const email = req.query.email;
+    try {
+        const result = yield login_controller_1.default.adminForgotPassword(email);
+        respuesta_module_1.default.logrado(req, res, result[0], 201);
+    }
+    catch (error) {
+        console.log(error);
+        respuesta_module_1.default.error(req, res, 'información invalida', 500);
+    }
+}));
+router.patch('/admin/change-password/:id', securityRoute, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const admin = req.body;
+    const id = req.params['id'];
+    try {
+        const result = yield login_controller_1.default.patchAdmin(id, admin);
+        respuesta_module_1.default.logrado(req, res, result[0], 200);
+    }
+    catch (error) {
+        console.log(error);
+        respuesta_module_1.default.error(req, res, 'información invalida', 500);
+    }
+}));
+router.patch('/user/change-password/:id', securityRoute, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = req.body;
+    const id = req.params['id'];
+    try {
+        const result = yield login_controller_1.default.patchUser(id, user);
+        respuesta_module_1.default.logrado(req, res, result[0], 200);
+    }
+    catch (error) {
+        console.log(error);
+        respuesta_module_1.default.error(req, res, 'información invalida', 500);
+    }
+}));
+router.get('/user/forgot-password', securityRoute, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const email = req.query.email;
+    try {
+        const result = yield login_controller_1.default.userForgotPassword(email);
+        respuesta_module_1.default.logrado(req, res, result[0], 201);
+    }
+    catch (error) {
+        console.log(error);
+        respuesta_module_1.default.error(req, res, 'información invalida', 500);
+    }
+}));
 router.get('/token', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield token_module_1.default.sign();

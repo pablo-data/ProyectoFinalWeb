@@ -41,13 +41,6 @@ function postAdmin(admin) {
         return data;
     });
 }
-function patchAdmin(id, admin) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const conn = yield database_module_1.default.connect();
-        const data = conn.query('UPDATE admin SET ? WHERE idAdmin = ?', [admin, id]);
-        return data;
-    });
-}
 function deleteAdmin(id) {
     return __awaiter(this, void 0, void 0, function* () {
         const conn = yield database_module_1.default.connect();
@@ -55,4 +48,4 @@ function deleteAdmin(id) {
         return data;
     });
 }
-exports.default = { getAdmins, getAdmin, postAdmin, patchAdmin, deleteAdmin, getAdminEmail };
+exports.default = { getAdmins, getAdmin, postAdmin, deleteAdmin, getAdminEmail };

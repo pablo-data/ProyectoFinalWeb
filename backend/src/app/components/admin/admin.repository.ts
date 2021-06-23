@@ -27,12 +27,6 @@ async function postAdmin(admin: Admin): Promise<any[]> {
     
 }
 
-async function patchAdmin(id: string, admin: Admin): Promise<any[]> {
-    const conn = await database.connect();
-    const data =  conn.query('UPDATE admin SET ? WHERE idAdmin = ?', [admin, id]);
-    return data;
-}
-
 async function deleteAdmin(id: string): Promise<any[]>{
     const conn = await database.connect();
     const data =  conn.query('DELETE FROM admin WHERE idAdmin = ?', [id]);
@@ -40,4 +34,4 @@ async function deleteAdmin(id: string): Promise<any[]>{
 }
 
 
-export default { getAdmins, getAdmin, postAdmin, patchAdmin, deleteAdmin, getAdminEmail };
+export default { getAdmins, getAdmin, postAdmin, deleteAdmin, getAdminEmail };

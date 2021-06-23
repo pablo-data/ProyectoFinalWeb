@@ -27,8 +27,10 @@ function postAdmin(admin) {
         const existe = yield admin_repository_1.default.getAdminEmail(admin);
         if (existe[0].length === 0) {
             admin.email = admin.email.toLowerCase();
-            //encriptar contraseña
+            //encriptar contraseña, pregunta, respuesta
             admin.contraseña = md5_1.default(admin.contraseña);
+            admin.pregunta = md5_1.default(admin.pregunta);
+            admin.respuesta = md5_1.default(admin.respuesta);
             return admin_repository_1.default.postAdmin(admin);
         }
         else {
@@ -36,16 +38,7 @@ function postAdmin(admin) {
         }
     });
 }
-function patchAdmin(id, admin) {
-    if (admin.email) {
-        admin.email = admin.email.toLowerCase();
-    }
-    if (admin.contraseña) {
-        admin.contraseña = md5_1.default(admin.contraseña);
-    }
-    return admin_repository_1.default.patchAdmin(id, admin);
-}
 function deleteAdmin(id) {
     return admin_repository_1.default.deleteAdmin(id);
 }
-exports.default = { getAdmins, getAdmin, postAdmin, patchAdmin, deleteAdmin };
+exports.default = { getAdmins, getAdmin, postAdmin, deleteAdmin };

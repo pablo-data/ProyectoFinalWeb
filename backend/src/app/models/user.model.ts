@@ -8,5 +8,7 @@ export interface User {
     comuna: string;
     email: string;
     contraseña: string;
+    pregunta: string;
+    respuesta: string;
 };
   

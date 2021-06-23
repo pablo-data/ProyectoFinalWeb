@@ -17,24 +17,16 @@ async function postAdmin(admin: Admin): Promise<any[]>{
     const existe = await repository.getAdminEmail(admin);
     if (existe[0].length === 0) {
         admin.email = admin.email.toLowerCase(); 
-        //encriptar contraseña
+        //encriptar contraseña, pregunta, respuesta
         admin.contraseña = md5(admin.contraseña);
+        admin.pregunta = md5(admin.pregunta);
+        admin.respuesta = md5(admin.respuesta);
         return repository.postAdmin(admin);
     }else{
         return Promise.reject('La cuenta de administrador ya existe');
     }
 
     
-}
-
-function patchAdmin(id: string, admin: Admin): Promise<any[]>{
-    if(admin.email){
-        admin.email = admin.email.toLowerCase();
-    }
-    if(admin.contraseña){
-        admin.contraseña = md5(admin.contraseña);
-    } 
-    return repository.patchAdmin(id, admin);
 }
 
 function deleteAdmin(id: string): Promise<any[]>{
@@ -44,4 +36,4 @@ function deleteAdmin(id: string): Promise<any[]>{
 
 
 
-export default { getAdmins, getAdmin, postAdmin, patchAdmin, deleteAdmin }
+export default { getAdmins, getAdmin, postAdmin, deleteAdmin }

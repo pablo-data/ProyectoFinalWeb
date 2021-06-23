@@ -34,8 +34,10 @@ function postUser(user) {
             user.direccion = user.direccion.toLowerCase();
             user.region = user.region.toLowerCase();
             user.comuna = user.comuna.toLowerCase();
-            //encriptar contraseña
+            //encriptar contraseña, pregunta, respuesta
             user.contraseña = md5_1.default(user.contraseña);
+            user.pregunta = md5_1.default(user.pregunta);
+            user.respuesta = md5_1.default(user.respuesta);
             return user_repository_1.default.postUser(user);
         }
         else {
@@ -43,37 +45,7 @@ function postUser(user) {
         }
     });
 }
-function patchUser(id, user) {
-    if (user.email) {
-        user.email = user.email.toLowerCase();
-    }
-    ;
-    if (user.nombres) {
-        user.nombres = user.nombres.toLowerCase();
-    }
-    ;
-    if (user.apellidos) {
-        user.apellidos = user.apellidos.toLowerCase();
-    }
-    ;
-    if (user.direccion) {
-        user.direccion = user.direccion.toLowerCase();
-    }
-    ;
-    if (user.region) {
-        user.region = user.region.toLowerCase();
-    }
-    ;
-    if (user.comuna) {
-        user.comuna = user.comuna.toLowerCase();
-    }
-    ;
-    if (user.contraseña) {
-        user.contraseña = md5_1.default(user.contraseña);
-    }
-    return user_repository_1.default.patchUser(id, user);
-}
 function deleteUser(id) {
     return user_repository_1.default.deleteUser(id);
 }
-exports.default = { getUsers, getUser, postUser, patchUser, deleteUser };
+exports.default = { getUsers, getUser, postUser, deleteUser };

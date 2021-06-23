@@ -48,18 +48,6 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         respuesta_module_1.default.error(req, res, 'información invalida', 500);
     }
 }));
-router.patch('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const admin = req.body;
-    const id = req.params['id'];
-    try {
-        const result = yield admin_controller_1.default.patchAdmin(id, admin);
-        respuesta_module_1.default.logrado(req, res, 'Se actualizó un admin correctamente', 200);
-    }
-    catch (error) {
-        console.log(error);
-        respuesta_module_1.default.error(req, res, 'información invalida', 500);
-    }
-}));
 router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params['id'];
     try {
