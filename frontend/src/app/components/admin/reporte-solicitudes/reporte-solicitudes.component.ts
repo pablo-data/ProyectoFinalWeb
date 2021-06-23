@@ -23,7 +23,10 @@ export class ReporteSolicitudesComponent implements OnInit {
       data.message.forEach(item=>{
         this.solicitudes.getFormByUserAdmin(item.idUsuario).subscribe(form=>{
           if(form.message!=''){
-            this.ticketForms = form.message;
+            console.log(form.message);
+            form.message.forEach(item=>{
+              this.ticketForms.push(item);
+            });
             this.ticketForms.forEach(item=>{
               this.solicitudes.getTicketByForm(item.idFormulario).subscribe(data=>{
                 //devuelve el ticket asociado a un form

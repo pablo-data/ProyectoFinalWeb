@@ -40,11 +40,7 @@ export class CambiarEstadoComponent implements OnInit {
     });
   }
   send() {
-    this.reporte
-      .patchEstadoTicket(
-        this.ticketForm.idFormulario,
-        this.formEstado.get('estado').value
-      )
+    this.reporte.patchEstadoTicket(this.ticketForm.idFormulario,this.formEstado.get('estado').value)
       .subscribe((data) => {
         if (data.message != '') {
           this.mensaje = '';
@@ -56,8 +52,6 @@ export class CambiarEstadoComponent implements OnInit {
       });
   }
   getUsuario(): Observable<any> {
-    return this.http.get(
-      `${environment.apiGetUser}${this.ticketForm.usuario_idUsuario}`
-    );
+    return this.http.get(`${environment.apiGetUser}${this.ticketForm.usuario_idUsuario}`);
   }
 }
