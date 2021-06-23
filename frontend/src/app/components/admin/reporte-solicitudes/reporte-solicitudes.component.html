@@ -1,14 +1,13 @@
 <section class="container">
+    <div class="text-center" *ngIf="ticketForms.length==0">
+        <h2>No hay ningún ticket en el sistema</h2>
+    </div>
     <div class="d-flex contenido">
         <div class="flex-column flex-fill container-box">
             <div class="estado-box">
                 <p>Abierto</p>
             </div>
-            <div *ngIf="ticketForms.length==0">
-                <h2>
-                    No hay ningún ticket en el sistema
-                </h2>
-            </div>
+             
             <div *ngFor="let item of ticketForms">
                 <div *ngIf="item.estado=='abierto'">
                     <mat-card class="box"

@@ -19,7 +19,7 @@ export const environment = {
   apiGetFormByUser: 'http://localhost:3800/api/form/user/',
   apiGetTicketByForm: 'http://localhost:3800/api/ticket/form/',
   apiForgotUser:'http://localhost:3800/api/login/user/forgot-password?email=',
-  apiForgotAdmin:'http://localhost:3800/api/login/admin/forgot-password?email',
+  apiForgotAdmin:'http://localhost:3800/api/login/admin/forgot-password?email=',
   apiPatchNewPassAdmin: 'http://localhost:3800/api/login/admin/change-password/',
   apiPatchNewPass:'http://localhost:3800/api/login/user/change-password/',
 };

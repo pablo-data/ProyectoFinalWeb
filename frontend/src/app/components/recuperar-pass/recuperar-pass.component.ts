@@ -39,26 +39,18 @@ export class RecuperarPassComponent implements OnInit {
             .getUserByMail(this.formRecuperar.get('email').value, data.message,esAdmin)
             .subscribe((data) => {
               if (data.message != '') {
-                this.idUsuario = data.message[0].idUsuario;
+                (esAdmin)?this.idUsuario=data.message[0].idAdmin:this.idUsuario = data.message[0].idUsuario;
                 if (this.checkPass()) {
                   let contraseña = this.formRecuperar.get('password').value;
                   let pregunta = this.formRecuperar.get('secretQ').value;
                   let respuesta = this.formRecuperar.get('secretA').value;
                   this.login.token().subscribe((data) => {
                     if (data.message.info != '') {
-                      this.login
-                        .patchNewPass(
-                          this.idUsuario,
-                          { contraseña, pregunta, respuesta },
-                          data.message,esAdmin
-                        )
+                      this.login.patchNewPass(this.idUsuario,{ contraseña, pregunta, respuesta },data.message,esAdmin)
                         .subscribe((data) => {
-                          if (
-                            data.message.info ==
-                            'Rows matched: 1  Changed: 1  Warnings: 0'
-                          ) {
+                          if (data.message.info =='Rows matched: 1  Changed: 1  Warnings: 0') {
                             sessionStorage.removeItem('recuperarAdmin');
-                            this.router.navigate(['']);
+                            (esAdmin)?this.router.navigate(['/adminIniciar']):this.router.navigate(['']);
                           } else {
                             this.mensaje = 'Respuesta errónea';
                           }

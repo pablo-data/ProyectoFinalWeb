@@ -13,12 +13,14 @@ export class ReporteUsuariosComponent implements OnInit {
   private fRegion: string = '';
   public usuarios: Usuario[] = [];
   public usuariosAux:Usuario[]=[];
+  public usuariosOriginal:Usuario[]=[];
   constructor(
     private usuariosReg: UsuariosRegistradosService,
   ) {}
   ngOnInit(): void {
     this.usuariosReg.cargarUsuarios().subscribe((data) => {
       this.usuarios = data.message;
+      this.usuariosOriginal=data.message;
     });
   }
   //#region Metodos de filtro
@@ -58,8 +60,8 @@ export class ReporteUsuariosComponent implements OnInit {
    * Solamente se aplica un filtro a la vez.
    */
   filtrar() {
-    if(this.fRut!='' && this.fComuna!='' && this.fRegion!=''){
-      this.usuariosAux = [...this.usuarios];
+    if(this.fRut!='' || this.fComuna!='' || this.fRegion!=''){
+      this.usuariosAux = [...this.usuariosOriginal];
       this.usuarios = [];
       if (this.fRut != '') {
         this.usuariosAux.forEach((x) => {
@@ -87,8 +89,8 @@ export class ReporteUsuariosComponent implements OnInit {
    * cuando el administrador cambia a la vista de "REPORTE DE SOLICITUDES".
    */
   reiniciar() {
-    if(this.usuarios==[]){
-       this.usuarios = [...this.usuariosAux];
+    if(this.usuarios.length<this.usuariosAux.length){
+       this.usuarios = [...this.usuariosOriginal];
        this.usuariosAux = [];
     }
   }

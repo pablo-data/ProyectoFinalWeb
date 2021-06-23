@@ -50,6 +50,7 @@ export class LoginService {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append('access-token', token);
+    console.log(environment.apiForgotAdmin+correo);
     if(!esAdmin)return this.http.get(`${environment.apiForgotUser}${correo}`,{'headers':headers});
     else return this.http.get(`${environment.apiForgotAdmin}${correo}`,{'headers':headers});
   }
