@@ -29,6 +29,10 @@ export class IniciarSesionUsuarioComponent implements OnInit {
       recaptcha: ['', Validators.required],
     });
   }
+  recuperarPass(){
+    sessionStorage.setItem('recuperarAdmin','false');
+    this.router.navigate(['/recuperacion']);
+  }
   send() {
     this.login.token().subscribe(token => {
       this.login.validarLoginUser(

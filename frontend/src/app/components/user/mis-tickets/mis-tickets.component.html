@@ -1,24 +1,44 @@
 <section class="container">
     <div class="d-flex contenido">
-        <div *ngFor="let item of ticketForms">
-            <mat-card class="box"
-                [ngClass]="{'prioridad-alta':item.prioridad_idPrioridad==1,'prioridad-media':item.prioridad_idPrioridad==2,'prioridad-baja':item.prioridad_idPrioridad==3}">
-                <mat-card-title>
-                    {{"Asunto: "+item.asunto}}
-                </mat-card-title>
-                <mat-card-subtitle>
-                    {{"Categoria: "+item.categoria}}
-                </mat-card-subtitle>
-                <mat-card-subtitle>
-                    {{"Descripción: "+item.descripcion}}
-                </mat-card-subtitle>
-                <mat-card-subtitle>
-                    {{"Respuesta: "+item.respuesta}}
-                </mat-card-subtitle>
-                <mat-card-subtitle>
-                    {{"Estado: "+item.estado}}
-                </mat-card-subtitle>
-            </mat-card>
+        <div *ngIf="ticketForms.length==0 && !enFiltro">
+            <h2>No hay ningún ticket</h2>
+        </div>
+        <div *ngIf="ticketForms.length>0 || enFiltro">
+            <form class="text-center contenido" [formGroup]="formFiltro">
+                <label style="color: black;">Ver primero:</label>
+                <select style="margin: auto;" class="form-select form-select-lg mb-3"
+                    aria-label=".form-select-lg example" formControlName="filtro">
+                    <option selected disabled>Seleccione</option>
+                    <option value="resp">Respondidos</option>
+                    <option value="alta">Prioridad-Alta</option>
+                    <option value="media">Prioridad-Media</option>
+                    <option value="baja">Prioridad-Baja</option>
+                    <option value="Todos">Todos</option>
+                </select>
+
+                <button mat-raised-button color="primary" (click)="ver()" [disabled]="formFiltro.invalid">Ver</button>
+                <p>Mostrando: {{contador}} ticket(s)</p>
+            </form>
+            <div *ngFor="let item of ticketForms">
+                <mat-card class="box"
+                    [ngClass]="{'prioridad-alta':item.prioridad_idPrioridad==1,'prioridad-media':item.prioridad_idPrioridad==2,'prioridad-baja':item.prioridad_idPrioridad==3}">
+                    <mat-card-title>
+                        {{"Asunto: "+item.asunto}}
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        {{"Categoria: "+item.categoria}}
+                    </mat-card-subtitle>
+                    <mat-card-subtitle>
+                        {{"Descripción: "+item.descripcion}}
+                    </mat-card-subtitle>
+                    <mat-card-subtitle>
+                        {{"Respuesta: "+item.respuesta}}
+                    </mat-card-subtitle>
+                    <mat-card-subtitle>
+                        {{"Estado: "+item.estado}}
+                    </mat-card-subtitle>
+                </mat-card>
+            </div>
         </div>
     </div>
 </section>

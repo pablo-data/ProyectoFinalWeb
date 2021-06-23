@@ -1,88 +1,100 @@
 <main class="container">
-        <div>
-            <h1>REGISTRO</h1>
+    <div>
+        <h1>REGISTRO</h1>
+    </div>
+    <form [formGroup]="formRegistro" (submit)="registrarse()" class="contenido">
+        <div class="text-center">
+            <h2>INTRODUZCA LOS SIGUIENTES DATOS</h2>
         </div>
-        <form [formGroup]="formRegistro" (submit)="registrarse()" class="contenido" >
-            <div class="text-center">
-                <h2>INTRODUZCA LOS SIGUIENTES DATOS</h2>
-            </div>
-            <div class="panel-bg panel-reclamo contenido container">
-                <div class="d-flex flex-column panel-margin">
-                    <div class="d-flex">
-                        <div class="contenido-mr">
-                            <label for="exampleInputEmail1">NOMBRES</label>
-                            <input type="text" class="form-control" formControlName="nombre" id="exampleInputEmail1"
-                                placeholder="INSERTE SUS NOMBRES">
-                        </div>
-                        <div class="contenido-ml">
-                            <label for="exampleInputEmail1">APELLIDOS</label>
-                            <input type="text" class="form-control" formControlName="apellido" id="exampleInputEmail1"
-                                placeholder="INSERTE SUS APELLIDOS">
-                        </div>
+        <div class="panel-bg panel-reclamo contenido container">
+            <div class="d-flex flex-column panel-margin">
+                <div class="d-flex">
+                    <div class="contenido-mr">
+                        <label for="exampleInputEmail1">NOMBRES</label>
+                        <input type="text" class="form-control" formControlName="nombre" id="exampleInputEmail1"
+                            placeholder="INSERTE SUS NOMBRES">
                     </div>
-                    <div class="d-flex">
-                        <div class="contenido-mr">
-                            <label for="exampleInputEmail1">RUT</label>
-                            <input type="text" class="form-control" formControlName="rut" id="exampleInputEmail1"
-                                placeholder="INSERTE SU RUT">
-                        </div>
-                        <div class="contenido-ml">
-                            <label for="exampleInputEmail1">DIRECCIÓN</label>
-                            <input type="text" class="form-control" formControlName="direccion" id="exampleInputEmail1"
-                                placeholder="INSERTE SU DIRECCIÓN">
-                        </div>
+                    <div class="contenido-ml">
+                        <label for="exampleInputEmail1">APELLIDOS</label>
+                        <input type="text" class="form-control" formControlName="apellido" id="exampleInputEmail1"
+                            placeholder="INSERTE SUS APELLIDOS">
                     </div>
-                    <div class="d-flex">
-                        <div class="contenido-mr">
-                            <mat-form-field>
-                                <mat-label>SELECCIONE SU REGIÓN</mat-label>
-                                <mat-select id="region" formControlName="region">
-                                    <mat-option *ngFor="let item of regiones" (click)="seleccionarRegion(item.comunas)"
-                                        [value]="item.nombre">
-                                        {{item.nombre}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="contenido-ml">
-                            <mat-form-field>
-                                <mat-label>SELECCIONE SU COMUNA</mat-label>
-                                <mat-select id="comuna" formControlName="comuna">
-                                    <mat-option *ngFor="let item of comunasRegion" [value]="item">
-                                        {{item}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
+                </div>
+                <div class="d-flex">
+                    <div class="contenido-mr">
+                        <label for="exampleInputEmail1">RUT</label>
+                        <input type="text" class="form-control" formControlName="rut" id="exampleInputEmail1"
+                            placeholder="INSERTE SU RUT">
                     </div>
+                    <div class="contenido-ml">
+                        <label for="exampleInputEmail1">DIRECCIÓN</label>
+                        <input type="text" class="form-control" formControlName="direccion" id="exampleInputEmail1"
+                            placeholder="INSERTE SU DIRECCIÓN">
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="contenido-mr">
+                        <mat-form-field>
+                            <mat-label>SELECCIONE SU REGIÓN</mat-label>
+                            <mat-select id="region" formControlName="region">
+                                <mat-option *ngFor="let item of regiones" (click)="seleccionarRegion(item.comunas)"
+                                    [value]="item.nombre">
+                                    {{item.nombre}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="contenido-ml">
+                        <mat-form-field>
+                            <mat-label>SELECCIONE SU COMUNA</mat-label>
+                            <mat-select id="comuna" formControlName="comuna">
+                                <mat-option *ngFor="let item of comunasRegion" [value]="item">
+                                    {{item}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div>
                     <div>
-                        <div>
-                            <label for="exampleInputEmail1">E-MAIL</label>
-                            <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1"
-                                placeholder="INSERTE SU CORREO">
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="contenido-mr">
-                            <label for="exampleInputEmail1">CONTRASEÑA</label>
-                            <input type="password" class="form-control" formControlName="password" id="exampleInputEmail1"
-                                placeholder="INSERTE SU CONTRASEÑA">
-                        </div>
-                        <div class="contenido-ml">
-                            <label for="exampleInputEmail1">CONFIRMAR CONTRASEÑA</label>
-                            <input type="password" class="form-control" formControlName="password2" id="exampleInputEmail1"
-                                placeholder="INSERTE SU CONTRASEÑA NUEVAMETNE">
-                        </div>
+                        <label for="exampleInputEmail1">E-MAIL</label>
+                        <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1"
+                            placeholder="INSERTE SU CORREO">
                     </div>
                 </div>
-                <div class="text-center" style="color: red;">
-                    <p>{{mensaje}}</p>
+                <label>SELECCIONE PREGUNTA SECRETA:</label>
+                <select formControlName="secretQ" style="margin: auto;" class="form-select form-select-lg mb-3"
+                    aria-label=".form-select-lg example">
+                    <option selected></option>
+                    <option value="comida favorita">Comida favorita</option>
+                    <option value="nombre de tu primer mascota">Nombre de tu primer mascota</option>
+                    <option value="juego favorito">Juego favorito</option>
+                    <option value="musica favorita">Musica favorita</option>
+                </select>
+                <div>
+                    <label>RESPUESTA</label>
+                    <input class="form-control text-center input-sesion" type="text" formControlName="secretA"
+                        placeholder="INSERTE RESPUESTA" id="exampleInputEmail1">
                 </div>
-                <div class="text-center">
-                    <button [disabled]="formRegistro.invalid" mat-raised-button class="btn" type="submit">ENVIAR</button>
+                <div class="d-flex">
+                    <div class="contenido-mr">
+                        <label for="exampleInputEmail1">CONTRASEÑA</label>
+                        <input type="password" class="form-control" formControlName="password" id="exampleInputEmail1"
+                            placeholder="INSERTE SU CONTRASEÑA">
+                    </div>
+                    <div class="contenido-ml">
+                        <label for="exampleInputEmail1">CONFIRMAR CONTRASEÑA</label>
+                        <input type="password" class="form-control" formControlName="password2" id="exampleInputEmail1"
+                            placeholder="INSERTE SU CONTRASEÑA NUEVAMETNE">
+                    </div>
                 </div>
             </div>
-             
-             
-        </form>
+            <div class="text-center" style="color: red;">
+                <p>{{mensaje}}</p>
+            </div>
+            <div class="text-center">
+                <button [disabled]="formRegistro.invalid" mat-raised-button class="btn" type="submit">ENVIAR</button>
+            </div>
+        </div>
+    </form>
 </main>

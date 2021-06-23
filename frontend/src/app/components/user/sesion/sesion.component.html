@@ -14,7 +14,7 @@
                 <div><input type="password" id="password" formControlName="password" placeholder="CONTRASEÑA"
                         class="text-center input-sesion "></div>
                 <div>
-                    <a href="" style="color: black;" [routerLink]="['/recuperacion']" routerLinkActive="router-link-active">RECUPERAR CONTRASEÑA</a>
+                    <button type="button" class="btn btn-info" (click)="recuperarPass()">RECUPERAR CONTRASEÑA</button>
                 </div> 
                 <div class=" container">
                     <ngx-recaptcha2 class="captcha" #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>

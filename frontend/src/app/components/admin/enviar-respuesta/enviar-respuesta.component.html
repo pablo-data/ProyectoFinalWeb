@@ -1,23 +1,24 @@
 <main class="container text-center">
     <form [formGroup]="formRespuesta" (submit)="send()" class="panel-margin">
-        <p>USUARIO: {{nombreUsuario}}</p>
+        <h2>USUARIO: {{nombreUsuario}}</h2>
         <br>
-        <p>ASUNTO: {{ ticketForm.asunto}}</p>
+        <h2>ASUNTO: {{ ticketForm.asunto}}</h2>
         <br>
         <div class="text-area-admin">
-            <label  style="color: black;">DESCRIPCION:</label>
-
-            <textarea class="form-control" cols="10" rows="5" readonly>
-                    {{ticketForm.descripcion}}
-                    </textarea>
+            <label style="color: black;">DESCRIPCION:</label>
+            <textarea class="form-control" cols="10" rows="5" readonly>{{ticketForm.descripcion}}</textarea>
         </div>
         <br>
         <div class="text-area-admin">
-            <label style="color: black;">Respuesta:</label>
-        
+            <div *ngIf="ticketForm.respuesta!=''">
+                <label style="color: black;">RESPUESTA ACTUAL:</label>
+                <p>{{ticketForm.respuesta}}</p>
+            </div>
+            <label style="color: black;">RESPUESTA:</label>
+
             <textarea formControlName="respuesta" class="form-control" cols="10" rows="5">
-                            {{ticketForm.descripcion}}
-                            </textarea>
+                {{ticketForm.respuesta}}
+            </textarea>
         </div>
         <div>
             <button [disabled]="formRespuesta.invalid" mat-raised-button class="btn" type="submit">ENVIAR</button>

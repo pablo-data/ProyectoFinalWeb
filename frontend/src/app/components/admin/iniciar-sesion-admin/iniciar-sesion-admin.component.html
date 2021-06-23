@@ -3,16 +3,17 @@
         <h1 style="color:#204051">SECCIÓN ADMINISTRACIÓN</h1>
     </div>
     <section>
+        <div class="text-center">
+            <h2>INICIAR SESIÓN</h2>
+        </div>
         <div class="panel-bg contenido-centrado text-center">
-            <h2 id="text-white">INICIAR SESIÓN</h2>
             <form [formGroup]="formLogin" (submit)="send()" class="panel-margin">
                 <div><input type="email" id="email" formControlName="email" placeholder="EMAIL"
                         class="text-center input-sesion"></div>
                 <div><input type="password" id="password" formControlName="password" placeholder="CONTRASEÑA"
                         class="text-center input-sesion"></div>
                 <div>
-                    <a href="" style="color: black;" [routerLink]="['/recuperacion']"
-                        routerLinkActive="router-link-active">RECUPERAR CONTRASEÑA</a>
+                    <button type="button" class="btn btn-info" (click)="recuperarPass()">RECUPERAR CONTRASEÑA</button>
                 </div>
                 <div class="container">
                     <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>

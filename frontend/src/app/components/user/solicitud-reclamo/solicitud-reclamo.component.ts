@@ -61,19 +61,15 @@ export class SolicitudReclamoComponent implements OnInit {
     }
     this.reclamo.formReclamo(this.form).subscribe((data) => {
       if (data.message == '') {
-        console.log('Error');
         this.mensaje = 'Ha ocurrido un error inesperado, intente más tarde';
       } else {
         this.ticket.formulario_idFormulario = data.message;
         this.ticket.estado = 'abierto';
         this.reclamo.ticketReclamo(this.ticket).subscribe((data) => {
           if (data.message != '') {
-            console.log('Envio realizado');
             this.mensaje = 'Envio realizado con exito';
           } else {
-            console.log('Ha ocurrido un error');
-            this.mensaje =
-              'Ha ocurrido un error inesperado, intente más tarde.';
+            this.mensaje ='Ha ocurrido un error inesperado, intente más tarde.';
           }
         });
       }

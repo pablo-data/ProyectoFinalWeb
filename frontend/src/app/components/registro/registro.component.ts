@@ -28,7 +28,9 @@ export class RegistroComponent implements OnInit {
       comuna: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      password2:['',Validators.required]
+      password2:['',Validators.required],
+      secretQ:['',Validators.required],
+      secretA:['',Validators.required]
     });
     //Se agregan las regiones de la interface.
     this.regiones = regionesI;
@@ -52,9 +54,10 @@ export class RegistroComponent implements OnInit {
       email: this.formRegistro.get('email').value,
       region: this.formRegistro.get('region').value,
       contraseña: this.formRegistro.get('password').value,
+      respuesta:this.formRegistro.get("secretA").value,
+      pregunta:this.formRegistro.get("secretQ").value
     };
     this.registro.registrar(usuario).subscribe(data=>{
-      console.log(data);
       if(data.error!=''){
         this.mensaje="Correo en uso, intente nuevamente"
       }else{
