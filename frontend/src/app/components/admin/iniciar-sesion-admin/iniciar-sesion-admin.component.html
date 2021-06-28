@@ -6,7 +6,7 @@
         <div class="text-center">
             <h2>INICIAR SESIÓN</h2>
         </div>
-        <div class="panel-bg contenido-centrado text-center">
+        <div class="panel-bg text-center">
             <form [formGroup]="formLogin" (submit)="send()" class="panel-margin">
                 <div><input type="email" id="email" formControlName="email" placeholder="EMAIL"
                         class="text-center input-sesion"></div>
@@ -15,8 +15,8 @@
                 <div>
                     <button type="button" class="btn btn-info" (click)="recuperarPass()">RECUPERAR CONTRASEÑA</button>
                 </div>
-                <div class="container">
-                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
+                <div>
+                    <ngx-recaptcha2 [theme]="theme" [size]="size" #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
                 </div>
                 <div class="mensaje-error">
                     <p>{{mensaje}}</p>
